@@ -1,9 +1,81 @@
-/** Cloudflare Pages Function: frontend calls same-origin /api */
-export async function onRequest({request,env}){
- if(request.method==='GET')return Response.json({success:true,message:'Nareendra Aqiqah API aktif'});
- if(request.method!=='POST')return Response.json({success:false,message:'Method tidak didukung.'},{status:405});
- if(!env.GAS_WEB_APP_URL||!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(env.GAS_WEB_APP_URL))return Response.json({success:false,message:'Environment GAS_WEB_APP_URL belum diisi dengan URL Web App Apps Script yang berakhir /exec.'},{status:500});
- let body;try{body=await request.json()}catch{return Response.json({success:false,message:'Request JSON tidak valid.'},{status:400})}
- if(!['getInvitationData','getGuestMessages','submitRSVP'].includes(String(body.action||'')))return Response.json({success:false,message:'Aksi API tidak diizinkan.'},{status:400});
- try{const upstream=await fetch(env.GAS_WEB_APP_URL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:body.action,data:body.data||{}})});const raw=await upstream.text();let result;try{result=JSON.parse(raw)}catch{return Response.json({success:false,message:'Apps Script tidak mengembalikan JSON. Periksa deployment Web App /exec dan izin akses.',upstreamStatus:upstream.status},{status:502})}return Response.json(result,{status:upstream.ok?200:502})}catch(err){return Response.json({success:false,message:'Gagal menghubungi Apps Script.',detail:String(err&&err.message||err).slice(0,150)},{status:502})}
+/**
+ * Cloudflare Pages Function: /api
+ * Tambahkan environment variable GAS_WEB_APP_URL = URL Web App Apps Script berakhiran /exec.
+ */
+const ALLOWED_ACTIONS = new Set(['getInvitationData', 'getGuestMessages', 'submitRSVP']);
+
+export async function onRequest(context) {
+  const { request, env } = context;
+  const headers = {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+    'Pragma': 'no-cache'
+  };
+
+  if (request.method === 'GET') {
+    return new Response(JSON.stringify({
+      success: true,
+      message: 'Cloudflare API aktif',
+      configured: Boolean(env.GAS_WEB_APP_URL)
+    }), { status: 200, headers });
+  }
+
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ success: false, message: 'Metode tidak diizinkan.' }), {
+      status: 405, headers
+    });
+  }
+
+  const gasUrl = String(env.GAS_WEB_APP_URL || '').trim();
+  if (!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(gasUrl)) {
+    return new Response(JSON.stringify({
+      success: false,
+      message: 'Environment variable GAS_WEB_APP_URL belum benar. Gunakan URL Web App Apps Script yang berakhir /exec.'
+    }), { status: 500, headers });
+  }
+
+  let payload;
+  try {
+    payload = await request.json();
+  } catch (_) {
+    return new Response(JSON.stringify({ success: false, message: 'Body permintaan bukan JSON valid.' }), {
+      status: 400, headers
+    });
+  }
+
+  if (!payload || !ALLOWED_ACTIONS.has(String(payload.action || ''))) {
+    return new Response(JSON.stringify({ success: false, message: 'Aksi API tidak diizinkan.' }), {
+      status: 400, headers
+    });
+  }
+
+  try {
+    const upstream = await fetch(gasUrl, {
+      method: 'POST',
+      redirect: 'follow',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+
+    const text = await upstream.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (_) {
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'Apps Script tidak mengembalikan JSON. Pastikan Web App sudah dideploy dan aksesnya sesuai.'
+      }), { status: 502, headers });
+    }
+
+    return new Response(JSON.stringify(data), {
+      status: upstream.ok ? 200 : upstream.status,
+      headers
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({
+      success: false,
+      message: 'Gagal menghubungi Apps Script: ' + String(error && error.message || error).slice(0, 180)
+    }), { status: 502, headers });
+  }
 }
