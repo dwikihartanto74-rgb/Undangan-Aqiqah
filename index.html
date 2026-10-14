@@ -3,21 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#0b2454">
+    <meta name="theme-color" content="#030712">
     <meta name="description" content="Undangan Aqiqah Nareendra AthaRazka Alfiqri">
     <title>Undangan Aqiqah — Nareendra AthaRazka Alfiqri</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
         :root {
             --navy: #0b2454;
             --blue: #2461a9;
             --sky: #dceeff;
-            --gold: #e9bd55;
+            --gold: #f3d068;
+            --gold-border: #e9bd55;
             --cream: #fffdf8;
-            --ink: #102b5c;
-            --muted: #647797;
-            --line: #d9e8f9;
+            --ink: #f1f5f9;
+            --muted: #94a3b8;
+            --line: #334155;
         }
         * { box-sizing: border-box; }
         html {
@@ -37,7 +38,7 @@
             margin: 0;
             font-family: 'DM Sans', sans-serif;
             color: var(--ink);
-            background: #edf6ff;
+            background: #030712;
             overflow-x: hidden;
         }
         body.invitation-open {
@@ -64,7 +65,7 @@
             overflow: hidden;
             padding: clamp(12px, 3vh, 24px) 16px;
             color: white;
-            background: radial-gradient(ellipse at 50% 40%, #457bb7 0, #173b77 43%, #091a40 100%);
+            background: radial-gradient(ellipse at 50% 40%, #1e293b 0, #0f172a 43%, #030712 100%);
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
         .cover.cover-exit {
@@ -94,7 +95,7 @@
             position: absolute;
             inset: -4px 0 0 16px;
             border-radius: 50%;
-            background: #173b77;
+            background: #0f172a;
         }
         .planet {
             position: absolute;
@@ -111,7 +112,7 @@
             position: absolute;
             width: 82px;
             height: 20px;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--gold-border);
             border-radius: 50%;
             left: -11px;
             top: 18px;
@@ -125,34 +126,35 @@
             overflow-y: auto;
             text-align: center;
             padding: clamp(20px, 4vw, 42px) clamp(16px, 4vw, 36px);
-            border: 1px solid #ffffff70;
+            border: 2px solid var(--gold-border);
             border-radius: 28px;
-            background: linear-gradient(145deg, #fffefaF2, #f4f8ffed);
-            color: var(--navy);
-            box-shadow: 0 24px 70px #030d2c55;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+            color: #f8fafc;
+            box-shadow: 0 24px 70px rgba(233, 189, 85, 0.25);
             animation: rise 0.8s ease both;
         }
-        .crown { font-size: 34px; color: #d7a52c; margin-bottom: 8px; }
-        .eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; color: #b58a2c; margin: 0 0 10px; }
-        .cover h1 { font: 700 clamp(2rem, 6.5vw, 4rem)/1.08 'Playfair Display', serif; margin: 0 auto 12px; }
+        .crown { font-size: 34px; color: var(--gold); margin-bottom: 8px; }
+        .eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; color: var(--gold); margin: 0 0 10px; font-family: 'Cinzel', serif; }
+        .cover h1 { font: 700 clamp(2rem, 6.5vw, 4rem)/1.08 'Cinzel', serif; margin: 0 auto 12px; color: #fef08a; }
         .ribbon {
             display: inline-block;
-            background: linear-gradient(110deg, #f8df94, #d6a93f, #f9e4a4);
+            background: linear-gradient(110deg, #fef08a, #e9bd55, #fef08a);
             padding: 8px 24px;
             border-radius: 4px;
             clip-path: polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%);
-            font: italic 600 clamp(0.95rem, 2.5vw, 1.35rem) 'Playfair Display', serif;
+            font: 600 clamp(0.95rem, 2.5vw, 1.35rem) 'Cinzel', serif;
+            color: #0f172a;
             margin: 0 0 16px;
         }
-        .cover-copy { line-height: 1.6; max-width: 440px; margin: 0 auto 18px; color: #405477; font-size: 0.9rem; }
+        .cover-copy { line-height: 1.6; max-width: 440px; margin: 0 auto 18px; color: #cbd5e1; font-size: 0.9rem; }
         .event-pill {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
-            border: 1px solid #efd58f;
-            background: #fffaf0;
+            border: 1px solid var(--gold-border);
+            background: rgba(30, 41, 59, 0.8);
             border-radius: 16px;
             padding: 10px 14px;
             margin: 0 auto 18px;
@@ -160,9 +162,10 @@
             max-width: 100%;
             font-size: 0.82rem;
             font-weight: 700;
+            color: #fef08a;
         }
         .event-pill span { display: flex; gap: 6px; align-items: center; }
-        .event-pill i { font-style: normal; color: #b48b31; }
+        .event-pill i { font-style: normal; color: var(--gold); }
         .primary {
             display: inline-flex;
             align-items: center;
@@ -173,14 +176,15 @@
             padding: 13px 24px;
             text-decoration: none;
             font-weight: 700;
-            background: linear-gradient(130deg, #2469b8, #0c2b65);
-            color: #fff;
-            box-shadow: 0 8px 22px #163e7b35;
+            background: linear-gradient(130deg, #e9bd55, #ca8a04);
+            color: #0f172a;
+            box-shadow: 0 8px 22px rgba(233, 189, 85, 0.35);
             transition: 0.2s;
+            font-family: 'Cinzel', serif;
         }
-        .primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px #163e7b55; }
+        .primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(233, 189, 85, 0.55); }
         .primary:disabled { opacity: 0.6; cursor: wait; }
-        .small-note { font-size: 0.72rem; color: #7d8ca5; margin: 14px 0 0; }
+        .small-note { font-size: 0.72rem; color: #94a3b8; margin: 14px 0 0; }
 
         .music-toggle {
             position: fixed;
@@ -193,11 +197,11 @@
             gap: 8px;
             min-height: 48px;
             padding: 10px 16px;
-            border: 1px solid #ffffff8a;
+            border: 1px solid var(--gold-border);
             border-radius: 999px;
-            background: linear-gradient(135deg, #2469b8, #0b2454);
-            color: #fff;
-            box-shadow: 0 8px 26px #071a3c66;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #fef08a;
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.6);
             font-weight: 700;
             font-size: 0.82rem;
             cursor: pointer;
@@ -206,9 +210,57 @@
         .music-toggle:active { transform: scale(0.95); }
         .music-toggle .music-icon { font-size: 1.15rem; }
         .music-toggle.playing { animation: pulseMusic 2s infinite; }
-        @keyframes pulseMusic { 0% { box-shadow: 0 0 0 0 rgba(36, 105, 184, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(36, 105, 184, 0); } 100% { box-shadow: 0 0 0 0 rgba(36, 105, 184, 0); } }
+        @keyframes pulseMusic { 0% { box-shadow: 0 0 0 0 rgba(233, 189, 85, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(233, 189, 85, 0); } 100% { box-shadow: 0 0 0 0 rgba(233, 189, 85, 0); } }
 
-        .page { width: 100%; background: linear-gradient(#e9f5ff, #fffdf8 42%, #eaf5ff); }
+        /* Halaman Utama - Langit Malam */
+        .page { 
+            width: 100%; 
+            background: radial-gradient(ellipse at 50% 15%, #1e293b 0%, #0b0f19 55%, #030712 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Latar Belakang Animasi Bintang Memudar & UFO */
+        .night-sky-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .fading-star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: starFade 3s ease-in-out infinite alternate;
+        }
+        @keyframes starFade {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Animasi UFO Terbang */
+        .ufo-wrapper {
+            position: absolute;
+            top: 12%;
+            left: -120px;
+            z-index: 2;
+            animation: ufoFly 28s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(233, 189, 85, 0.5));
+        }
+        @keyframes ufoFly {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            25% { transform: translateX(35vw) translateY(-25px) rotate(4deg); }
+            50% { transform: translateX(70vw) translateY(15px) rotate(-3deg); }
+            75% { transform: translateX(95vw) translateY(-10px) rotate(2deg); }
+            100% { transform: translateX(calc(100vw + 150px)) translateY(0) rotate(0deg); }
+        }
+
+        /* Pastikan konten utama berada di atas background efek */
+        .section, .footer {
+            position: relative;
+            z-index: 3;
+        }
         
         .section { 
             padding: clamp(48px, 7vw, 88px) clamp(14px, 3vw, 38px); 
@@ -228,63 +280,79 @@
         }
 
         .section-inner { max-width: 1320px; margin: auto; }
-        .intro { text-align: center; padding-top: 70px; padding-bottom: 52px; background: radial-gradient(ellipse at top, #d7edff, transparent 72%); }
-        .section-kicker { color: #b48b31; font-weight: 700; letter-spacing: 0.17em; font-size: 0.72rem; }
-        .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Playfair Display', serif; margin: 12px 0 18px; }
-        .lead { max-width: 720px; line-height: 1.8; color: var(--muted); margin: 0 auto; }
+        .intro { text-align: center; padding-top: 70px; padding-bottom: 52px; background: radial-gradient(ellipse at top, rgba(30, 41, 59, 0.6), transparent 72%); }
+        .section-kicker { color: var(--gold); font-weight: 700; letter-spacing: 0.17em; font-size: 0.75rem; font-family: 'Cinzel', serif; }
+        .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Cinzel', serif; margin: 12px 0 18px; color: #fef08a; }
+        .lead { max-width: 720px; line-height: 1.8; color: #cbd5e1; margin: 0 auto; }
         .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
-        .card { background: #ffffffdc; border: 1px solid #dce9f8; border-radius: 26px; padding: clamp(20px, 3vw, 32px); box-shadow: 0 14px 45px #123e7710; min-width: 0; }
-        .card-title { display: flex; align-items: center; gap: 12px; font: 600 1.25rem 'Playfair Display', serif; margin: 0 0 20px; }
-        .card-title .symbol { font-family: inherit; color: #d5a22f; font-size: 1.5rem; }
-        .detail-line { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed #dce7f5; font-size: 0.9rem; line-height: 1.55; }
+        
+        /* BINGKAI EMAS PADA KARTU-KARTU UTAMA */
+        .card, .countdown-card, .invitation-copy, .rsvp-card { 
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.85)); 
+            border: 2px solid var(--gold-border); 
+            border-radius: 26px; 
+            padding: clamp(20px, 3vw, 32px); 
+            box-shadow: 0 14px 45px rgba(233, 189, 85, 0.15); 
+            min-width: 0; 
+            color: #f8fafc;
+        }
+        .card-title { display: flex; align-items: center; gap: 12px; font: 600 1.25rem 'Cinzel', serif; margin: 0 0 20px; color: #fef08a; }
+        .card-title .symbol { font-family: inherit; color: var(--gold); font-size: 1.5rem; }
+        .detail-line { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed rgba(233, 189, 85, 0.3); font-size: 0.9rem; line-height: 1.55; color: #e2e8f0; }
         .detail-line:last-child { border-bottom: 0; }
-        .detail-line .symbol { font-size: 1.15rem; color: #1c5ca8; min-width: 25px; }
-        .detail-line strong { display: block; }
+        .detail-line .symbol { font-size: 1.15rem; color: var(--gold); min-width: 25px; }
+        .detail-line strong { display: block; color: #fef08a; }
         .map-help { font-size: 0.78rem; color: var(--muted); margin: 10px 0 15px; line-height: 1.6; }
-        .map-button { width: 100%; background: #1c5da8; color: white; border: 0; border-radius: 999px; padding: 13px 16px; font-weight: 700; }
-        .countdown-card { background: linear-gradient(145deg, #0c2455, #1f5795); color: white; position: relative; overflow: hidden; }
-        .countdown-card .card-title { color: white; }
-        .countdown-card .card-title .symbol { color: #f5d16d; }
+        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 13px 16px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); }
+        
+        .countdown-card { background: linear-gradient(145deg, #0f172a, #1e293b); color: white; position: relative; overflow: hidden; }
+        .countdown-card .card-title { color: #fef08a; }
+        .countdown-card .card-title .symbol { color: var(--gold); }
         .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-        .timebox { background: #ffffff13; border: 1px solid #ffffff3b; border-radius: 15px; text-align: center; padding: 16px 4px; }
-        .timebox strong { display: block; font-size: clamp(1.25rem, 2.5vw, 2rem); color: #ffdf83; }
-        .timebox span { font-size: 0.7rem; color: #e1efff; }
-        .countdown-note { text-align: center; color: #d9e8ff; font: italic 1rem 'Playfair Display', serif; line-height: 1.6; margin: 20px 0 0; }
+        .timebox { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); border-radius: 15px; text-align: center; padding: 16px 4px; }
+        .timebox strong { display: block; font-size: clamp(1.25rem, 2.5vw, 2rem); color: #fef08a; font-family: 'Cinzel', serif; }
+        .timebox span { font-size: 0.7rem; color: #cbd5e1; }
+        .countdown-note { text-align: center; color: #fef08a; font: italic 1rem 'Cinzel', serif; line-height: 1.6; margin: 20px 0 0; }
+        
         .content-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.5fr); gap: 18px; align-items: stretch; }
-        .invitation-copy { position: relative; overflow: hidden; min-height: 100%; background: linear-gradient(150deg, #fffef9, #e4f3ff); }
-        .invitation-copy p { line-height: 1.9; color: #465a7a; }
-        .invitation-copy .decor { font-size: 2.3rem; color: #d8aa3b; }
-        .rsvp-card { background: #fff; border: 1px solid #d8e8f9; border-radius: 26px; padding: clamp(20px, 3vw, 34px); box-shadow: 0 15px 45px #163c6b12; }
+        .invitation-copy { position: relative; overflow: hidden; min-height: 100%; background: linear-gradient(150deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); }
+        .invitation-copy p { line-height: 1.9; color: #cbd5e1; }
+        .invitation-copy .decor { font-size: 2.3rem; color: var(--gold); }
+        
+        .rsvp-card { background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); }
         .rsvp-form { display: grid; gap: 15px; }
         .formrow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .field { display: grid; gap: 7px; min-width: 0; }
-        .field label { font-size: 0.8rem; font-weight: 700; color: #31496d; }
-        .field input, .field select, .field textarea { width: 100%; min-width: 0; border: 1px solid #d4e0ef; border-radius: 12px; padding: 13px 14px; background: #fbfdff; color: #102b5c; outline: none; }
-        .field input:focus, .field select:focus, .field textarea:focus { border-color: #4788cb; box-shadow: 0 0 0 3px #4788cb20; }
+        .field label { font-size: 0.8rem; font-weight: 700; color: #fef08a; }
+        .field input, .field select, .field textarea { width: 100%; min-width: 0; border: 1px solid rgba(233, 189, 85, 0.4); border-radius: 12px; padding: 13px 14px; background: rgba(15, 23, 42, 0.8); color: #f8fafc; outline: none; }
+        .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(233, 189, 85, 0.2); }
         .field textarea { min-height: 95px; resize: vertical; }
-        .charcount { text-align: right; font-size: 0.72rem; color: #71819a; margin-top: -4px; }
+        .charcount { text-align: right; font-size: 0.72rem; color: #94a3b8; margin-top: -4px; }
         .rsvp-form .primary { width: 100%; }
-        .realtime-note { display: flex; align-items: center; gap: 8px; color: #13854b; font-size: 0.75rem; margin-top: 13px; }
-        .live-dot { width: 8px; height: 8px; background: #18a35b; border-radius: 50%; box-shadow: 0 0 0 4px #18a35b20; }
+        .realtime-note { display: flex; align-items: center; gap: 8px; color: #4ade80; font-size: 0.75rem; margin-top: 13px; }
+        .live-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.2); }
         .message-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-        .live-badge { font-size: 0.72rem; border: 1px solid #a7e2c0; color: #128149; background: #effdf5; padding: 7px 11px; border-radius: 999px; font-weight: 700; }
+        .live-badge { font-size: 0.72rem; border: 1px solid rgba(74, 222, 128, 0.4); color: #4ade80; background: rgba(74, 222, 128, 0.1); padding: 7px 11px; border-radius: 999px; font-weight: 700; }
         .messages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
-        .wish { border: 1px solid #dce9f8; border-radius: 18px; background: #fff; padding: 20px; min-width: 0; overflow-wrap: anywhere; }
+        
+        .wish { border: 1px solid var(--gold-border); border-radius: 18px; background: rgba(15, 23, 42, 0.85); padding: 20px; min-width: 0; overflow-wrap: anywhere; box-shadow: 0 8px 25px rgba(233, 189, 85, 0.1); }
         .wish-top { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
-        .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #d5eaff, #7db6ef); color: #154a8c; font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
-        .wish strong { display: block; font-size: .9rem; }
-        .wish small { display: block; color: #8b9ab1; font-size: .7rem; margin-top: 3px; }
-        .wish p { line-height: 1.65; font-size: .84rem; margin: 0; color: #425879; }
-        .empty { grid-column: 1/-1; text-align: center; padding: 28px; border: 1px dashed #c8d9ec; border-radius: 18px; color: #6d7f99; background: #ffffff80; }
-        .footer { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at top, #1e4e8d, #0a1c43 72%); color: white; padding: 72px 20px 54px; }
-        .footer h2 { font: 600 clamp(2.2rem, 5vw, 3.6rem) 'Playfair Display', serif; color: #ffdf83; margin: 12px 0; }
-        .footer p { color: #d9e6f8; line-height: 1.8; }
-        .signature { font: italic 600 clamp(1.15rem, 3vw, 1.7rem) 'Playfair Display', serif; color: #ffdf83 !important; }
-        .backtop { margin-top: 22px; border: 1px solid #b9d4f2; background: #ffffff0b; color: white; padding: 11px 20px; border-radius: 999px; }
-        .toast { position: fixed; right: 16px; bottom: 80px; z-index: 100000; width: max-content; max-width: calc(100vw - 32px); background: #102b5c; color: #fff; padding: 14px 18px; border-radius: 14px; box-shadow: 0 15px 40px #05133144; opacity: 0; transform: translateY(10px); pointer-events: none; transition: 0.25s; line-height: 1.5; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #334155, #1e293b); color: var(--gold); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; border: 1px solid var(--gold-border); }
+        .wish strong { display: block; font-size: .9rem; color: #fef08a; }
+        .wish small { display: block; color: #94a3b8; font-size: .7rem; margin-top: 3px; }
+        .wish p { line-height: 1.65; font-size: .84rem; margin: 0; color: #cbd5e1; }
+        .empty { grid-column: 1/-1; text-align: center; padding: 28px; border: 1px dashed var(--gold-border); border-radius: 18px; color: #94a3b8; background: rgba(15, 23, 42, 0.5); }
+        
+        .footer { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at top, #1e293b, #030712 72%); color: white; padding: 72px 20px 54px; border-top: 1px solid var(--gold-border); }
+        .footer h2 { font: 600 clamp(2.2rem, 5vw, 3.6rem) 'Cinzel', serif; color: #fef08a; margin: 12px 0; }
+        .footer p { color: #cbd5e1; line-height: 1.8; }
+        .signature { font: italic 600 clamp(1.15rem, 3vw, 1.7rem) 'Cinzel', serif; color: var(--gold) !important; }
+        .backtop { margin-top: 22px; border: 1px solid var(--gold-border); background: rgba(255,255,255,0.05); color: #fef08a; padding: 11px 20px; border-radius: 999px; font-family: 'Cinzel', serif; }
+        
+        .toast { position: fixed; right: 16px; bottom: 80px; z-index: 100000; width: max-content; max-width: calc(100vw - 32px); background: #0f172a; border: 1px solid var(--gold-border); color: #fff; padding: 14px 18px; border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); opacity: 0; transform: translateY(10px); pointer-events: none; transition: 0.25s; line-height: 1.5; }
         .toast.show { opacity: 1; transform: translateY(0); }
-        .toast.error { background: #9f2525; }
-        .loader { display: inline-block; width: 16px; height: 16px; border: 2px solid #ffffff80; border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; }
+        .toast.error { background: #7f1d1d; border-color: #f87171; }
+        .loader { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.5); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; }
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes twinkle { from { opacity: .55; } to { opacity: 1; } }
         @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -316,11 +384,40 @@
 
     <!-- 2. Seluruh Konten Utama Undangan -->
     <div class="page hidden" id="invitation">
+        
+        <!-- Latar Belakang Animasi Bintang & UFO -->
+        <div class="night-sky-bg" id="skyBg">
+            <div class="ufo-wrapper">
+                <svg width="90" height="45" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Cahaya bawah UFO -->
+                    <path d="M30 35 L50 50 L70 35 Z" fill="url(#ufoGlow)" opacity="0.6"/>
+                    <!-- Kubah Kaca -->
+                    <ellipse cx="50" cy="20" rx="18" ry="12" fill="#93c5fd" opacity="0.8"/>
+                    <ellipse cx="46" cy="17" rx="6" ry="4" fill="#ffffff" opacity="0.6"/>
+                    <!-- Badan Piringan UFO -->
+                    <ellipse cx="50" cy="27" rx="35" ry="8" fill="#cbd5e1"/>
+                    <ellipse cx="50" cy="25" rx="35" ry="7" fill="#e2e8f0"/>
+                    <ellipse cx="50" cy="23" rx="28" ry="5" fill="#647797"/>
+                    <!-- Lampu-lampu kecil berkedip -->
+                    <circle cx="25" cy="27" r="2.5" fill="#fef08a"/>
+                    <circle cx="37" cy="29" r="2.5" fill="#fef08a"/>
+                    <circle cx="50" cy="30" r="2.5" fill="#fef08a"/>
+                    <circle cx="63" cy="29" r="2.5" fill="#fef08a"/>
+                    <circle cx="75" cy="27" r="2.5" fill="#fef08a"/>
+                    <defs>
+                        <linearGradient id="ufoGlow" x1="50" y1="35" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#fef08a" stop-opacity="0.9"/>
+                            <stop offset="1" stop-color="#e9bd55" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
 
         <section class="section intro" id="home">
             <div class="section-inner">
                 <p class="section-kicker">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
-                <h2>Assalamu’alaikum<br><span style="color:#2864a4">Warahmatullahi Wabarakatuh</span></h2>
+                <h2>Assalamu’alaikum<br><span style="color:#fef08a">Warahmatullahi Wabarakatuh</span></h2>
                 <p class="lead">Dengan penuh rasa syukur atas karunia Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara tasyakuran Aqiqah putra kami.</p>
                 <h2 style="margin-top:28px">Nareendra AthaRazka Alfiqri</h2>
                 <p class="lead">Semoga menjadi anak yang saleh, cerdas, berakhlak mulia, serta membawa kebahagiaan dan keberkahan bagi keluarga.</p>
@@ -364,25 +461,25 @@
         <section class="section" style="padding-top:10px">
             <div class="section-inner content-grid">
                 <article class="card invitation-copy">
-                    <div class="decor">✧ ♧ ✧</div>
+                    <div class="decor" style="text-align: center;">✧ ♧ ✧</div>
                     <h3 class="card-title">Ucapan Undangan</h3>
                     <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan turut mendoakan putra kami dalam acara tasyakuran Aqiqah ini.</p>
                     <p>Kehadiran serta doa yang diberikan menjadi hadiah yang sangat berarti bagi keluarga kami.</p>
-                    <p style="font-family:'Playfair Display',serif;font-style:italic">Terima kasih atas perhatian dan doa baiknya.</p>
-                    <div style="font-size:2rem;color:#d6a83d;text-align:center;margin-top:20px">☾ ✦ ☽</div>
+                    <p style="font-family:'Cinzel',serif;font-style:italic;color:#fef08a;">Terima kasih atas perhatian dan doa baiknya.</p>
+                    <div style="font-size:2rem;color:var(--gold);text-align:center;margin-top:20px">☾ ✦ ☽</div>
                 </article>
 
-                <section class="rsvp-card" id="rsvp">
+                <section class="card rsvp-card" id="rsvp">
                     <h3 class="card-title"><span class="symbol">✉</span> Konfirmasi Kehadiran (RSVP)</h3>
                     <p class="muted" style="margin-top:-10px;line-height:1.6">Mohon isi konfirmasi berikut agar kami dapat mempersiapkan acara dengan baik.</p>
                     <form class="rsvp-form" id="rsvpForm">
                         <div class="formrow">
                             <div class="field">
-                                <label for="guestName">Nama Tamu <span style="color:#c33">*</span></label>
+                                <label for="guestName">Nama Tamu <span style="color:#f87171">*</span></label>
                                 <input id="guestName" name="name" maxlength="100" placeholder="Contoh: Ahmad Fauzi" required autocomplete="name">
                             </div>
                             <div class="field">
-                                <label for="guestCount">Jumlah Orang <span style="color:#c33">*</span></label>
+                                <label for="guestCount">Jumlah Orang <span style="color:#f87171">*</span></label>
                                 <select id="guestCount" name="count">
                                     <option value="1">1 orang</option>
                                     <option value="2">2 orang</option>
@@ -393,7 +490,7 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label for="attendance">Status Kehadiran <span style="color:#c33">*</span></label>
+                            <label for="attendance">Status Kehadiran <span style="color:#f87171">*</span></label>
                             <select id="attendance" name="attendance" required>
                                 <option value="Hadir">Insya Allah, hadir</option>
                                 <option value="Tidak Hadir">Mohon maaf, tidak dapat hadir</option>
@@ -428,26 +525,26 @@
         </section>
 
         <footer class="footer">
-            <div style="font-size:2rem;color:#ffdf83">✦ ☾ ✦</div>
-            <p class="section-kicker" style="color:#ffdf83">TERIMA KASIH</p>
+            <div style="font-size:2rem;color:var(--gold)">✦ ☾ ✦</div>
+            <p class="section-kicker" style="color:var(--gold)">TERIMA KASIH</p>
             <h2>Wassalamu’alaikum<br>Warahmatullahi Wabarakatuh</h2>
             <p>Semoga Allah SWT membalas setiap doa dan kebaikan Bapak/Ibu/Saudara/i dengan keberkahan.</p>
             <p class="signature">Ahmadun Solehan Fiqri & Nadia Ningsih</p>
             <button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" type="button">↑ Kembali ke Atas</button>
 
             <!-- Copyright Footer & Real 3D Social Icons -->
-            <div style="margin-top: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; color: #b9d4f2;">
+            <div style="margin-top: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; color: #cbd5e1;">
                 
                 <!-- Teks Copyright & Lisensi -->
                 <div style="font-size: 0.78rem; line-height: 1.6; max-width: 600px; padding: 0 16px;">
                     <p style="margin: 0 0 6px 0;">
                         Copyright © 2026 DickyStudious. 
                         <span style="display: inline-flex; align-items: center; gap: 4px; vertical-align: middle; margin: 0 4px;">
-                            <span style="border: 1px solid #b9d4f2; border-radius: 50%; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">cc</span>
-                            <span style="border: 1px solid #b9d4f2; border-radius: 50%; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">👤</span>
+                            <span style="border: 1px solid #cbd5e1; border-radius: 50%; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">cc</span>
+                            <span style="border: 1px solid #cbd5e1; border-radius: 50%; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">👤</span>
                         </span>
                         The content of this site is licensed under a 
-                        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" style="color: #ffdf83; text-decoration: underline;">Creative Commons Attribution 4.0 International License</a>.
+                        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" style="color: #fef08a; text-decoration: underline;">Creative Commons Attribution 4.0 International License</a>.
                     </p>
                     <p style="margin: 0;">
                         DickyStudious® and associated identifiers are trademarks of DickyStudious.
@@ -457,15 +554,15 @@
                 <!-- Tombol Logo Asli 3D (LinkedIn, Instagram, WhatsApp) -->
                 <div style="display: flex; gap: 16px; align-items: center; justify-content: center; margin-top: 8px;">
                     <!-- LinkedIn -->
-                    <a href="PASTE_LINK_LINKEDIN_DISINI" target="_blank" rel="noopener noreferrer" style="width: 44px; height: 44px; background: linear-gradient(145deg, #ffffff, #e6edf5); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.8); transition: transform 0.2s ease;" title="LinkedIn">
+                    <a href="PASTE_LINK_LINKEDIN_DISINI" target="_blank" rel="noopener noreferrer" style="width: 44px; height: 44px; background: linear-gradient(145deg, #ffffff, #e2e8f0); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.8); transition: transform 0.2s ease;" title="LinkedIn">
                         <img src="https://api.iconify.design/logos:linkedin-icon.svg" alt="LinkedIn" style="width: 22px; height: 22px;">
                     </a>
                     <!-- Instagram -->
-                    <a href="https://instagram.com/4mericannoo?mdxt=MXNubzByY3p3c21kMQ%3D%3D" target="_blank" rel="noopener noreferrer" style="width: 44px; height: 44px; background: linear-gradient(145deg, #ffffff, #e6edf5); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.8); transition: transform 0.2s ease;" title="Instagram">
+                    <a href="https://instagram.com/4mericannoo?mdxt=MXNubzByY3p3c21kMQ%3D%3D" target="_blank" rel="noopener noreferrer" style="width: 44px; height: 44px; background: linear-gradient(145deg, #ffffff, #e2e8f0); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.8); transition: transform 0.2s ease;" title="Instagram">
                         <img src="https://api.iconify.design/skill-icons:instagram.svg" alt="Instagram" style="width: 22px; height: 22px;">
                     </a>
                     <!-- WhatsApp -->
-                    <a href="https://wa.me/+6285837156652" target="_blank" rel="noopener noreferrer" style="width: 44px; height: 44px; background: linear-gradient(145deg, #ffffff, #e6edf5); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.8); transition: transform 0.2s ease;" title="WhatsApp">
+                    <a href="https://wa.me/+6285837156652" target="_blank" rel="noopener noreferrer" style="width: 44px; height: 44px; background: linear-gradient(145deg, #ffffff, #e2e8f0); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.8); transition: transform 0.2s ease;" title="WhatsApp">
                         <img src="https://api.iconify.design/logos:whatsapp-icon.svg" alt="WhatsApp" style="width: 22px; height: 22px;">
                     </a>
                 </div>
@@ -482,6 +579,21 @@
     </button>
 
     <script>
+        // Generate Dynamic Fading Stars in Background
+        const skyBg = document.getElementById('skyBg');
+        for (let i = 0; i < 45; i++) {
+            const star = document.createElement('div');
+            star.className = 'fading-star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            skyBg.appendChild(star);
+        }
+
         const GOOGLE_MAPS_URL = '';
         const BACKGROUND_MUSIC_URL = 'https://files.catbox.moe/nso3ry.mp4';
         const EVENT_DATE = new Date('2026-10-24T10:00:00+07:00');
