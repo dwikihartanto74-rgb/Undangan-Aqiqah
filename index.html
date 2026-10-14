@@ -520,6 +520,12 @@
                 document.documentElement.classList.remove('cover-lock');
                 document.documentElement.style.overflow = '';
                 window.scrollTo({ top: 0, behavior: 'auto' });
+                
+                // Mendaftarkan ulang section ke Intersection Observer setelah dibuka
+                document.querySelectorAll('.section').forEach(section => {
+                    observer.observe(section);
+                });
+
                 refreshMessages(true);
             }, 380);
         }
@@ -657,10 +663,10 @@
             }
         });
 
-        // Logika Intersection Observer untuk Efek Gulir (Scroll Reveal / Fade In & Out)
+        // Logika Intersection Observer untuk Efek Gulir (Scroll Reveal & Fade In/Out)
         const observerOptions = {
             root: null,
-            threshold: 0.12
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -669,7 +675,6 @@
                     entry.target.classList.add('visible');
                     entry.target.classList.remove('fade-out');
                 } else {
-                    // Ketika section tergulir ke atas melewati layar, berikan efek fade-out halus
                     if (entry.boundingClientRect.top < 0) {
                         entry.target.classList.add('fade-out');
                         entry.target.classList.remove('visible');
@@ -678,17 +683,9 @@
             });
         }, observerOptions);
 
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll('.section').forEach(section => {
-                observer.observe(section);
-            });
-        });
-
         updateCountdown();
         setInterval(updateCountdown, 1000);
         refreshMessages(true);
         setInterval(() => { if (!document.hidden) refreshMessages(); }, POLL_INTERVAL_MS);
         document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshMessages(true); });
     </script>
-</body>
-</html>
