@@ -220,7 +220,7 @@
             overflow: hidden;
         }
 
-        /* Latar Belakang Animasi Bintang Memudar & UFO */
+        /* Latar Belakang Animasi Bintang 3D Emas Nimbul & Memudar */
         .night-sky-bg {
             position: absolute;
             inset: 0;
@@ -228,32 +228,16 @@
             z-index: 1;
             overflow: hidden;
         }
-        .fading-star {
+        .gold-star-3d {
             position: absolute;
-            background: #fff;
+            background: radial-gradient(circle at 30% 30%, #fffdf8, #fef08a 40%, #e9bd55 80%);
             border-radius: 50%;
-            animation: starFade 3s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px rgba(233, 189, 85, 0.9), inset -1px -1px 3px rgba(0,0,0,0.4);
+            animation: star3dFade 3.5s ease-in-out infinite alternate;
         }
-        @keyframes starFade {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* Animasi UFO Terbang */
-        .ufo-wrapper {
-            position: absolute;
-            top: 12%;
-            left: -120px;
-            z-index: 2;
-            animation: ufoFly 28s linear infinite;
-            filter: drop-shadow(0 0 10px rgba(233, 189, 85, 0.5));
-        }
-        @keyframes ufoFly {
-            0% { transform: translateX(0) translateY(0) rotate(0deg); }
-            25% { transform: translateX(35vw) translateY(-25px) rotate(4deg); }
-            50% { transform: translateX(70vw) translateY(15px) rotate(-3deg); }
-            75% { transform: translateX(95vw) translateY(-10px) rotate(2deg); }
-            100% { transform: translateX(calc(100vw + 150px)) translateY(0) rotate(0deg); }
+        @keyframes star3dFade {
+            0% { opacity: 0.15; transform: scale(0.6); filter: drop-shadow(0 0 2px rgba(233,189,85,0.3)); }
+            100% { opacity: 1; transform: scale(1.35); filter: drop-shadow(0 0 12px rgba(233,189,85,1)); }
         }
 
         /* Pastikan konten utama berada di atas background efek */
@@ -303,7 +287,8 @@
         .detail-line .symbol { font-size: 1.15rem; color: var(--gold); min-width: 25px; }
         .detail-line strong { display: block; color: #fef08a; }
         .map-help { font-size: 0.78rem; color: var(--muted); margin: 10px 0 15px; line-height: 1.6; }
-        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 13px 16px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); }
+        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 13px 16px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); transition: transform 0.2s ease; }
+        .map-button:hover { transform: translateY(-2px); }
         
         .countdown-card { background: linear-gradient(145deg, #0f172a, #1e293b); color: white; position: relative; overflow: hidden; }
         .countdown-card .card-title { color: #fef08a; }
@@ -343,6 +328,11 @@
         .wish p { line-height: 1.65; font-size: .84rem; margin: 0; color: #cbd5e1; }
         .empty { grid-column: 1/-1; text-align: center; padding: 28px; border: 1px dashed var(--gold-border); border-radius: 18px; color: #94a3b8; background: rgba(15, 23, 42, 0.5); }
         
+        /* Gift Section Styles */
+        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 840px; margin: 28px auto 0; }
+        .bank-logo-bri { background: linear-gradient(135deg, #00529b, #003366); color: white; padding: 8px 18px; border-radius: 10px; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 1.5px; box-shadow: 0 4px 15px rgba(0,82,155,0.4); border: 1px solid #60a5fa; display: inline-block; }
+        .bank-logo-bsi { background: linear-gradient(135deg, #00875a, #005a3b); color: white; padding: 8px 18px; border-radius: 10px; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 1.5px; box-shadow: 0 4px 15px rgba(0,135,90,0.4); border: 1px solid #34d399; display: inline-block; }
+
         .footer { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at top, #1e293b, #030712 72%); color: white; padding: 72px 20px 54px; border-top: 1px solid var(--gold-border); }
         .footer h2 { font: 600 clamp(2.2rem, 5vw, 3.6rem) 'Cinzel', serif; color: #fef08a; margin: 12px 0; }
         .footer p { color: #cbd5e1; line-height: 1.8; }
@@ -385,34 +375,8 @@
     <!-- 2. Seluruh Konten Utama Undangan -->
     <div class="page hidden" id="invitation">
         
-        <!-- Latar Belakang Animasi Bintang & UFO -->
-        <div class="night-sky-bg" id="skyBg">
-            <div class="ufo-wrapper">
-                <svg width="90" height="45" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Cahaya bawah UFO -->
-                    <path d="M30 35 L50 50 L70 35 Z" fill="url(#ufoGlow)" opacity="0.6"/>
-                    <!-- Kubah Kaca -->
-                    <ellipse cx="50" cy="20" rx="18" ry="12" fill="#93c5fd" opacity="0.8"/>
-                    <ellipse cx="46" cy="17" rx="6" ry="4" fill="#ffffff" opacity="0.6"/>
-                    <!-- Badan Piringan UFO -->
-                    <ellipse cx="50" cy="27" rx="35" ry="8" fill="#cbd5e1"/>
-                    <ellipse cx="50" cy="25" rx="35" ry="7" fill="#e2e8f0"/>
-                    <ellipse cx="50" cy="23" rx="28" ry="5" fill="#647797"/>
-                    <!-- Lampu-lampu kecil berkedip -->
-                    <circle cx="25" cy="27" r="2.5" fill="#fef08a"/>
-                    <circle cx="37" cy="29" r="2.5" fill="#fef08a"/>
-                    <circle cx="50" cy="30" r="2.5" fill="#fef08a"/>
-                    <circle cx="63" cy="29" r="2.5" fill="#fef08a"/>
-                    <circle cx="75" cy="27" r="2.5" fill="#fef08a"/>
-                    <defs>
-                        <linearGradient id="ufoGlow" x1="50" y1="35" x2="50" y2="50" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#fef08a" stop-opacity="0.9"/>
-                            <stop offset="1" stop-color="#e9bd55" stop-opacity="0"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-        </div>
+        <!-- Latar Belakang Animasi Bintang 3D Emas Nimbul & Memudar -->
+        <div class="night-sky-bg" id="skyBg"></div>
 
         <section class="section intro" id="home">
             <div class="section-inner">
@@ -524,6 +488,39 @@
             </div>
         </section>
 
+        <!-- TABEL GIFT / KIRIM HADIAH DI BAWAH UCAPAN TAMU -->
+        <section class="section" id="gift" style="padding-top:15px">
+            <div class="section-inner">
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <p class="section-kicker">TANDA KASIH</p>
+                    <h2 style="margin-bottom:6px">Kirim Hadiah Digital</h2>
+                    <p class="lead" style="font-size: 0.92rem;">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda ingin mengirimkan tanda kasih, dapat melalui rekening berikut:</p>
+                </div>
+                <div class="gift-grid">
+                    <!-- Bank BRI -->
+                    <div class="card" style="text-align: center;">
+                        <div style="margin-bottom: 16px;">
+                            <div class="bank-logo-bri">BRi</div>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 4px;">Nomor Rekening</p>
+                        <p style="font-size: 1.25rem; font-weight: 700; color: #fef08a; font-family: 'Cinzel', serif; letter-spacing: 1.2px; margin-bottom: 6px;">1234-01-005678-50-2</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 20px;">a.n. Ahmadun Solehan Fiqri</p>
+                        <button class="map-button" onclick="copyAcc('123401005678502', 'Nomor Rekening BRI berhasil disalin!')" type="button">📋 Salin Rekening BRI</button>
+                    </div>
+                    <!-- Bank BSI -->
+                    <div class="card" style="text-align: center;">
+                        <div style="margin-bottom: 16px;">
+                            <div class="bank-logo-bsi">BSI</div>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 4px;">Nomor Rekening</p>
+                        <p style="font-size: 1.25rem; font-weight: 700; color: #fef08a; font-family: 'Cinzel', serif; letter-spacing: 1.2px; margin-bottom: 6px;">7145678901</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 20px;">a.n. Nadia Ningsih</p>
+                        <button class="map-button" onclick="copyAcc('7145678901', 'Nomor Rekening BSI berhasil disalin!')" type="button">📋 Salin Rekening BSI</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <footer class="footer">
             <div style="font-size:2rem;color:var(--gold)">✦ ☾ ✦</div>
             <p class="section-kicker" style="color:var(--gold)">TERIMA KASIH</p>
@@ -579,18 +576,18 @@
     </button>
 
     <script>
-        // Generate Dynamic Fading Stars in Background
+        // Generate Dynamic 3D Gold Fading Stars in Background
         const skyBg = document.getElementById('skyBg');
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 50; i++) {
             const star = document.createElement('div');
-            star.className = 'fading-star';
-            const size = Math.random() * 3 + 1;
+            star.className = 'gold-star-3d';
+            const size = Math.random() * 3.5 + 1.2;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.top = `${Math.random() * 100}%`;
             star.style.left = `${Math.random() * 100}%`;
             star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            star.style.animationDelay = `${Math.random() * 2}s`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
             skyBg.appendChild(star);
         }
 
@@ -608,6 +605,14 @@
             el.classList.add('show');
             clearTimeout(toastTimer);
             toastTimer = setTimeout(() => el.classList.remove('show'), 3600);
+        }
+
+        function copyAcc(text, msg) {
+            navigator.clipboard.writeText(text).then(() => {
+                toast(msg);
+            }).catch(() => {
+                toast('Gagal menyalin nomor rekening.', true);
+            });
         }
 
         async function api(action, data = {}) {
