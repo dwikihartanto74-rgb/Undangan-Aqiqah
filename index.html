@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#0b2454"> 
+    <meta name="theme-color" content="#0b2454">
     <meta name="description" content="Undangan Aqiqah Nareendra AthaRazka Alfiqri">
     <title>Undangan Aqiqah — Nareendra AthaRazka Alfiqri</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -216,7 +216,6 @@
         .nav a { font-size: 0.78rem; font-weight: 700; text-decoration: none; color: var(--navy); padding: 9px 12px; border-radius: 999px; }
         .nav a:hover { background: #e6f2ff; }
         
-        /* Efek Transisi Gulir (Scroll Reveal & Fade-Out) */
         .section { 
             padding: clamp(48px, 7vw, 88px) clamp(14px, 3vw, 38px); 
             width: 100%; 
@@ -301,7 +300,7 @@
 </head>
 <body class="cover-lock">
 
-    <!-- 1. Tampilan Awal (Cover / Sampul) Murni Full Screen 100vh/100dvh -->
+    <!-- 1. Tampilan Awal (Cover / Sampul) -->
     <section class="cover" id="cover">
         <div class="stars"></div>
         <div class="moon"></div>
@@ -321,7 +320,7 @@
         </div>
     </section>
 
-    <!-- 2. Seluruh Konten Utama Undangan (Disembunyikan dengan class 'hidden' saat awal) -->
+    <!-- 2. Seluruh Konten Utama Undangan -->
     <div class="page hidden" id="invitation">
         <header class="topbar">
             <div class="brand">✦ Nareendra’s Aqiqah</div>
@@ -499,7 +498,7 @@
 
     <script>
         const GOOGLE_MAPS_URL = '';
-        const BACKGROUND_MUSIC_URL = 'https://drive.google.com/uc?export=download&id=1Dq63UiYHVw70Q6fhSCliS7XV0wShCf6L';
+        const BACKGROUND_MUSIC_URL = 'https://files.catbox.moe/nso3ry.mp4';
         const EVENT_DATE = new Date('2026-10-24T10:00:00+07:00');
         const POLL_INTERVAL_MS = 5000;
         const $ = s => document.querySelector(s); 
@@ -556,7 +555,6 @@
                 document.documentElement.style.overflow = '';
                 window.scrollTo({ top: 0, behavior: 'auto' });
                 
-                // Mendaftarkan ulang section ke Intersection Observer setelah dibuka
                 document.querySelectorAll('.section').forEach(section => {
                     observer.observe(section);
                 });
@@ -698,7 +696,6 @@
             }
         });
 
-        // Logika Intersection Observer untuk Efek Gulir (Scroll Reveal & Fade In/Out)
         const observerOptions = {
             root: null,
             threshold: 0.1
