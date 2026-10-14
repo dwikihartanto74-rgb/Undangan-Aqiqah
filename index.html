@@ -22,7 +22,6 @@
         * { box-sizing: border-box; }
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 72px;
         }
         html.cover-lock, body.cover-lock {
             overflow: hidden !important;
@@ -210,11 +209,6 @@
         @keyframes pulseMusic { 0% { box-shadow: 0 0 0 0 rgba(36, 105, 184, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(36, 105, 184, 0); } 100% { box-shadow: 0 0 0 0 rgba(36, 105, 184, 0); } }
 
         .page { width: 100%; background: linear-gradient(#e9f5ff, #fffdf8 42%, #eaf5ff); }
-        .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px clamp(14px, 4vw, 50px); background: #fffdf2eF; border-bottom: 1px solid #d9e8f5; backdrop-filter: blur(14px); }
-        .brand { font: 700 1.05rem 'Playfair Display', serif; }
-        .nav { display: flex; gap: 6px; flex-wrap: wrap; }
-        .nav a { font-size: 0.78rem; font-weight: 700; text-decoration: none; color: var(--navy); padding: 9px 12px; border-radius: 999px; }
-        .nav a:hover { background: #e6f2ff; }
         
         .section { 
             padding: clamp(48px, 7vw, 88px) clamp(14px, 3vw, 38px); 
@@ -295,7 +289,7 @@
         @keyframes twinkle { from { opacity: .55; } to { opacity: 1; } }
         @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
         @media(max-width: 900px) { .details-grid { grid-template-columns: 1fr 1fr; } .countdown-card { grid-column: 1/-1; } .content-grid { grid-template-columns: 1fr; } .messages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media(max-width: 600px) { .cover { padding: 16px 12px; } .cover-card { border-radius: 24px; padding: 24px 16px; } .moon { width: 50px; height: 50px; right: 5%; top: 5%; } .planet { transform: scale(0.6); left: -4%; top: 8%; } .event-pill { font-size: 0.76rem; gap: 8px; padding: 10px 12px; } .topbar { align-items: flex-start; flex-direction: column; padding: 10px 14px; gap: 5px; } .nav { width: 100%; justify-content: space-between; } .nav a { padding: 8px 6px; font-size: 0.7rem; } .section { padding: 48px 13px; } .intro { padding-top: 48px; } .details-grid { grid-template-columns: 1fr; } .countdown-card { grid-column: auto; } .countdown { gap: 6px; } .timebox { padding: 13px 2px; } .timebox span { font-size: 0.64rem; } .formrow { grid-template-columns: 1fr; } .messages { grid-template-columns: 1fr; } .card, .rsvp-card { border-radius: 20px; padding: 20px; } .footer { padding: 58px 17px 42px; } }
+        @media(max-width: 600px) { .cover { padding: 16px 12px; } .cover-card { border-radius: 24px; padding: 24px 16px; } .moon { width: 50px; height: 50px; right: 5%; top: 5%; } .planet { transform: scale(0.6); left: -4%; top: 8%; } .event-pill { font-size: 0.76rem; gap: 8px; padding: 10px 12px; } .section { padding: 48px 13px; } .intro { padding-top: 48px; } .details-grid { grid-template-columns: 1fr; } .countdown-card { grid-column: auto; } .countdown { gap: 6px; } .timebox { padding: 13px 2px; } .timebox span { font-size: 0.64rem; } .formrow { grid-template-columns: 1fr; } .messages { grid-template-columns: 1fr; } .card, .rsvp-card { border-radius: 20px; padding: 20px; } .footer { padding: 58px 17px 42px; } }
     </style>
 </head>
 <body class="cover-lock">
@@ -322,15 +316,6 @@
 
     <!-- 2. Seluruh Konten Utama Undangan -->
     <div class="page hidden" id="invitation">
-        <header class="topbar">
-            <div class="brand">✦ Nareendra’s Aqiqah</div>
-            <nav class="nav">
-                <a href="#home">⌂ Beranda</a>
-                <a href="#acara">▦ Acara</a>
-                <a href="#ucapan">♡ Ucapan</a>
-                <a href="#rsvp">✉ RSVP</a>
-            </nav>
-        </header>
 
         <section class="section intro" id="home">
             <div class="section-inner">
