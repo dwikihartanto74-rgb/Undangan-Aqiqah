@@ -53,7 +53,7 @@
         button { cursor: pointer; }
         .hidden { display: none !important; }
 
-        /* Cover Depan Full Screen Tanpa Bingkai */
+        /* Cover Depan Full Screen */
         .cover {
             position: fixed;
             inset: 0;
@@ -213,7 +213,7 @@
             overflow: hidden;
         }
 
-        /* Latar Belakang Animasi Meteor Jatuh Emas & Ekor Pendaran */
+        /* Latar Belakang Meteor Jatuh Emas */
         .night-sky-bg {
             position: absolute;
             inset: 0;
@@ -243,24 +243,11 @@
         }
 
         @keyframes meteorFall {
-            0% {
-                opacity: 0;
-                transform: translateX(0) translateY(0) rotate(-35deg);
-            }
-            10% {
-                opacity: 1;
-            }
-            30% {
-                opacity: 0.8;
-            }
-            45% {
-                opacity: 0;
-                transform: translateX(-450px) translateY(450px) rotate(-35deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-450px) translateY(450px) rotate(-35deg);
-            }
+            0% { opacity: 0; transform: translateX(0) translateY(0) rotate(-35deg); }
+            10% { opacity: 1; }
+            30% { opacity: 0.8; }
+            45% { opacity: 0; transform: translateX(-450px) translateY(450px) rotate(-35deg); }
+            100% { opacity: 0; transform: translateX(-450px) translateY(450px) rotate(-35deg); }
         }
 
         .section, .footer {
@@ -268,14 +255,17 @@
             z-index: 3;
         }
         
-        /* Memberikan jarak antar seksi lebih luas agar tidak dempet */
+        /* PENGATURAN JARAK SEKSI BERI RUANG LEGA BERJEDA */
         .section { 
-            padding: clamp(64px, 9vw, 110px) clamp(16px, 4vw, 42px); 
-            width: 100%; 
-            margin: 0 auto; 
+            padding: 30px clamp(16px, 4vw, 36px); 
+            max-width: 900px; 
+            margin: 0 auto 60px auto; 
             opacity: 0;
             transform: translateY(35px);
             transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .section:last-of-type {
+            margin-bottom: 20px;
         }
         .section.visible {
             opacity: 1;
@@ -286,79 +276,72 @@
             transform: translateY(-20px);
         }
 
-        .section-inner { max-width: 1240px; margin: auto; }
-        .intro { text-align: center; padding-top: 80px; padding-bottom: 60px; background: radial-gradient(ellipse at top, rgba(30, 41, 59, 0.6), transparent 72%); }
+        .section-inner { width: 100%; margin: auto; }
+        .intro { text-align: center; padding-top: 80px; padding-bottom: 40px; margin-bottom: 40px; background: radial-gradient(ellipse at top, rgba(30, 41, 59, 0.6), transparent 72%); }
         .section-kicker { color: var(--gold); font-weight: 700; letter-spacing: 0.2em; font-size: 0.8rem; font-family: 'Cinzel', serif; }
         .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Cinzel', serif; margin: 14px 0 20px; color: #fef08a; }
         .lead { max-width: 720px; line-height: 1.85; color: #cbd5e1; margin: 0 auto; font-size: 1rem; }
         
-        /* Grid Tabel Utama dengan Jarak Longgar */
-        .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 40px; }
-        
+        /* CARD DENGAN PADDING & BORDER EMAS BERJARAK NYAMAN */
         .card, .countdown-card, .invitation-copy, .rsvp-card { 
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.85)); 
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)); 
             border: 2px solid var(--gold-border); 
-            border-radius: 26px; 
-            padding: clamp(24px, 3.5vw, 36px); 
-            box-shadow: 0 16px 50px rgba(233, 189, 85, 0.15); 
-            min-width: 0; 
+            border-radius: 28px; 
+            padding: clamp(28px, 4vw, 42px); 
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(233, 189, 85, 0.12); 
+            width: 100%; 
             color: #f8fafc;
         }
-        .card-title { display: flex; align-items: center; gap: 12px; font: 600 1.3rem 'Cinzel', serif; margin: 0 0 24px; color: #fef08a; }
+        .card-title { display: flex; align-items: center; gap: 14px; font: 600 1.35rem 'Cinzel', serif; margin: 0 0 28px; color: #fef08a; }
         .card-title .symbol { font-family: inherit; color: var(--gold); font-size: 1.5rem; }
-        .detail-line { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed rgba(233, 189, 85, 0.3); font-size: 0.92rem; line-height: 1.6; color: #e2e8f0; }
+        
+        .detail-line { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed rgba(233, 189, 85, 0.25); font-size: 0.95rem; line-height: 1.65; color: #e2e8f0; }
         .detail-line:last-child { border-bottom: 0; }
-        .detail-line .symbol { font-size: 1.15rem; color: var(--gold); min-width: 25px; }
-        .detail-line strong { display: block; color: #fef08a; margin-bottom: 2px; }
-        .map-help { font-size: 0.78rem; color: var(--muted); margin: 12px 0 18px; line-height: 1.6; }
-        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 14px 18px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); transition: transform 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .detail-line .symbol { font-size: 1.2rem; color: var(--gold); min-width: 25px; }
+        .detail-line strong { display: block; color: #fef08a; margin-bottom: 4px; font-size: 1rem; }
+        .map-help { font-size: 0.8rem; color: var(--muted); margin: 16px 0 20px; line-height: 1.6; }
+        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 15px 20px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); transition: transform 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
         .map-button:hover { transform: translateY(-2px); }
         
-        .countdown-card { background: linear-gradient(145deg, #0f172a, #1e293b); color: white; position: relative; overflow: hidden; }
-        .countdown-card .card-title { color: #fef08a; }
-        .countdown-card .card-title .symbol { color: var(--gold); }
-        .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-        .timebox { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); border-radius: 16px; text-align: center; padding: 18px 6px; }
-        .timebox strong { display: block; font-size: clamp(1.3rem, 2.8vw, 2.2rem); color: #fef08a; font-family: 'Cinzel', serif; }
-        .timebox span { font-size: 0.72rem; color: #cbd5e1; }
-        .countdown-note { text-align: center; color: #fef08a; font: italic 1rem 'Cinzel', serif; line-height: 1.6; margin: 24px 0 0; }
+        .countdown-card { background: linear-gradient(145deg, #0f172a, #1e293b); text-align: center; }
+        .countdown-card .card-title { justify-content: center; }
+        .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
+        .timebox { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); border-radius: 18px; text-align: center; padding: 20px 8px; }
+        .timebox strong { display: block; font-size: clamp(1.4rem, 3vw, 2.4rem); color: #fef08a; font-family: 'Cinzel', serif; }
+        .timebox span { font-size: 0.75rem; color: #cbd5e1; }
+        .countdown-note { text-align: center; color: #fef08a; font: italic 1.05rem 'Cinzel', serif; line-height: 1.6; margin: 28px 0 0; }
         
-        /* Grid Jarak Ucapan Undangan & RSVP */
-        .content-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 32px; align-items: stretch; }
-        .invitation-copy { position: relative; overflow: hidden; min-height: 100%; background: linear-gradient(150deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); }
-        .invitation-copy p { line-height: 2; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 16px; }
-        .invitation-copy .decor { font-size: 2.3rem; color: var(--gold); }
+        .invitation-copy p { line-height: 2; color: #cbd5e1; font-size: 1rem; margin-bottom: 18px; text-align: center; }
         
-        .rsvp-card { background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); }
-        .rsvp-form { display: grid; gap: 18px; }
-        .formrow { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .rsvp-form { display: grid; gap: 20px; }
+        .formrow { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .field { display: grid; gap: 8px; min-width: 0; }
-        .field label { font-size: 0.85rem; font-weight: 700; color: #fef08a; }
-        .field input, .field select, .field textarea { width: 100%; min-width: 0; border: 1px solid rgba(233, 189, 85, 0.4); border-radius: 12px; padding: 14px 16px; background: rgba(15, 23, 42, 0.8); color: #f8fafc; outline: none; }
+        .field label { font-size: 0.88rem; font-weight: 700; color: #fef08a; }
+        .field input, .field select, .field textarea { width: 100%; min-width: 0; border: 1px solid rgba(233, 189, 85, 0.4); border-radius: 14px; padding: 15px 18px; background: rgba(15, 23, 42, 0.8); color: #f8fafc; outline: none; }
         .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(233, 189, 85, 0.2); }
-        .field textarea { min-height: 100px; resize: vertical; }
+        .field textarea { min-height: 110px; resize: vertical; }
         .charcount { text-align: right; font-size: 0.75rem; color: #94a3b8; margin-top: -4px; }
-        .rsvp-form .primary { width: 100%; }
-        .realtime-note { display: flex; align-items: center; gap: 8px; color: #4ade80; font-size: 0.78rem; margin-top: 16px; }
+        .rsvp-form .primary { width: 100%; margin-top: 8px; }
+        .realtime-note { display: flex; align-items: center; justify-content: center; gap: 8px; color: #4ade80; font-size: 0.8rem; margin-top: 18px; }
         .live-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.2); }
         .message-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
         .live-badge { font-size: 0.75rem; border: 1px solid rgba(74, 222, 128, 0.4); color: #4ade80; background: rgba(74, 222, 128, 0.1); padding: 8px 14px; border-radius: 999px; font-weight: 700; }
         
-        .messages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .messages { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
         .wish { border: 1px solid var(--gold-border); border-radius: 20px; background: rgba(15, 23, 42, 0.85); padding: 22px; min-width: 0; overflow-wrap: anywhere; box-shadow: 0 8px 25px rgba(233, 189, 85, 0.1); }
         .wish-top { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
         .avatar { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #334155, #1e293b); color: var(--gold); font-weight: 700; font-size: 1.15rem; flex-shrink: 0; border: 1px solid var(--gold-border); }
         .wish strong { display: block; font-size: 0.95rem; color: #fef08a; }
         .wish small { display: block; color: #94a3b8; font-size: 0.72rem; margin-top: 3px; }
         .wish p { line-height: 1.7; font-size: 0.88rem; margin: 0; color: #cbd5e1; }
-        .empty { grid-column: 1/-1; text-align: center; padding: 32px; border: 1px dashed var(--gold-border); border-radius: 20px; color: #94a3b8; background: rgba(15, 23, 42, 0.5); }
+        .empty { grid-column: 1/-1; text-align: center; padding: 36px; border: 1px dashed var(--gold-border); border-radius: 20px; color: #94a3b8; background: rgba(15, 23, 42, 0.5); }
         
         /* Gift Section - Real ATM Cards Styles */
-        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; max-width: 780px; margin: 32px auto 0; }
+        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 28px; margin-top: 32px; }
         
         .atm-card {
             width: 100%;
-            height: 210px;
+            height: 215px;
             border-radius: 20px;
             padding: 24px;
             color: #ffffff;
@@ -373,12 +356,8 @@
         }
         .atm-card:hover { transform: translateY(-4px); }
         
-        .bri-card {
-            background: linear-gradient(135deg, #002244 0%, #00529b 55%, #1d4ed8 100%);
-        }
-        .bsi-card {
-            background: linear-gradient(135deg, #002b19 0%, #00875a 55%, #059669 100%);
-        }
+        .bri-card { background: linear-gradient(135deg, #002244 0%, #00529b 55%, #1d4ed8 100%); }
+        .bsi-card { background: linear-gradient(135deg, #002b19 0%, #00875a 55%, #059669 100%); }
 
         .card-top { display: flex; justify-content: space-between; align-items: center; }
         .card-chip {
@@ -404,11 +383,11 @@
 
         .bank-logo-img { height: 28px; object-fit: contain; filter: brightness(0) invert(1); }
 
-        .footer { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at top, #1e293b, #030712 72%); color: white; padding: 80px 20px 60px; border-top: 1px solid var(--gold-border); }
-        .footer h2 { font: 600 clamp(2.2rem, 5vw, 3.6rem) 'Cinzel', serif; color: #fef08a; margin: 14px 0; }
+        .footer { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at top, #1e293b, #030712 72%); color: white; padding: 90px 20px 60px; border-top: 1px solid var(--gold-border); margin-top: 40px; }
+        .footer h2 { font: 600 clamp(2.2rem, 5vw, 3.6rem) 'Cinzel', serif; color: #fef08a; margin: 16px 0; }
         .footer p { color: #cbd5e1; line-height: 1.85; }
-        .signature { font: italic 600 clamp(1.2rem, 3vw, 1.8rem) 'Cinzel', serif; color: var(--gold) !important; margin-top: 10px; }
-        .backtop { margin-top: 28px; border: 1px solid var(--gold-border); background: rgba(255,255,255,0.05); color: #fef08a; padding: 12px 24px; border-radius: 999px; font-family: 'Cinzel', serif; }
+        .signature { font: italic 600 clamp(1.2rem, 3vw, 1.8rem) 'Cinzel', serif; color: var(--gold) !important; margin-top: 14px; }
+        .backtop { margin-top: 32px; border: 1px solid var(--gold-border); background: rgba(255,255,255,0.05); color: #fef08a; padding: 13px 26px; border-radius: 999px; font-family: 'Cinzel', serif; }
         
         .toast { position: fixed; right: 16px; bottom: 80px; z-index: 100000; width: max-content; max-width: calc(100vw - 32px); background: #0f172a; border: 1px solid var(--gold-border); color: #fff; padding: 14px 18px; border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); opacity: 0; transform: translateY(10px); pointer-events: none; transition: 0.25s; line-height: 1.5; }
         .toast.show { opacity: 1; transform: translateY(0); }
@@ -417,31 +396,25 @@
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
         
-        @media(max-width: 960px) { 
-            .details-grid { grid-template-columns: 1fr; gap: 24px; } 
-            .content-grid { grid-template-columns: 1fr; gap: 24px; } 
-            .messages { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } 
-        }
         @media(max-width: 600px) { 
+            .section { padding: 20px 14px; margin-bottom: 50px; } 
             .cover { padding: 30px 16px; } 
             .moon { width: 55px; height: 55px; right: 5%; top: 4%; } 
             .planet { transform: scale(0.65); left: -4%; top: 6%; } 
             .event-pill { font-size: 0.8rem; gap: 10px; padding: 10px 18px; } 
-            .section { padding: 52px 16px; } 
-            .intro { padding-top: 52px; } 
+            .intro { padding-top: 52px; margin-bottom: 20px; } 
             .countdown { gap: 6px; } 
             .timebox { padding: 14px 2px; } 
             .timebox span { font-size: 0.65rem; } 
-            .formrow { grid-template-columns: 1fr; gap: 14px; } 
-            .messages { grid-template-columns: 1fr; } 
-            .card, .rsvp-card { border-radius: 20px; padding: 22px; } 
+            .formrow { grid-template-columns: 1fr; gap: 16px; } 
+            .card, .rsvp-card { border-radius: 22px; padding: 24px 18px; } 
             .footer { padding: 60px 18px 45px; } 
         }
     </style>
 </head>
 <body class="cover-lock">
 
-    <!-- 1. Tampilan Awal Full Screen (Cover / Sampul) tanpa kotak bingkai -->
+    <!-- 1. Tampilan Awal Full Screen (Cover / Sampul) -->
     <section class="cover" id="cover">
         <div class="moon"></div>
         <div class="planet"></div>
@@ -466,7 +439,7 @@
     <!-- 2. Seluruh Konten Utama Undangan -->
     <div class="page hidden" id="invitation">
         
-        <!-- Latar Belakang Animasi Meteor Jatuh Emas -->
+        <!-- Latar Belakang Meteor Jatuh Emas -->
         <div class="night-sky-bg" id="skyBg"></div>
 
         <section class="section intro" id="home">
@@ -479,61 +452,69 @@
             </div>
         </section>
 
-        <!-- SEKSI 1: TABEL TENTANG SI KECIL, DETAIL ACARA, DAN HITUNG MUNDUR -->
-        <section class="section" id="acara">
+        <!-- SEKSI 1: TABEL TENTANG SI KECIL (BERDIRI SENDIRI BERJARAK) -->
+        <section class="section">
             <div class="section-inner">
-                <div class="details-grid">
-                    <!-- Tabel Tentang Si Kecil -->
-                    <article class="card">
-                        <h3 class="card-title"><span class="symbol">♔</span> Tentang Si Kecil</h3>
-                        <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Anak</strong>Nareendra AthaRazka Alfiqri</div></div>
-                        <div class="detail-line"><span class="symbol">✦</span><div><strong>Nama Panggilan</strong>Nareendra</div></div>
-                        <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Ayah</strong>Ahmadun Solehan Fiqri</div></div>
-                        <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Ibu</strong>Nadia Ningsih</div></div>
-                    </article>
-
-                    <!-- Detail Acara -->
-                    <article class="card">
-                        <h3 class="card-title"><span class="symbol">✧</span> Detail Acara</h3>
-                        <div class="detail-line"><span class="symbol">▦</span><div><strong>Hari & Tanggal</strong>Sabtu, 24 Oktober 2026</div></div>
-                        <div class="detail-line"><span class="symbol">◷</span><div><strong>Waktu</strong>10.00 WIB</div></div>
-                        <div class="detail-line"><span class="symbol">⌖</span><div><strong>Tempat</strong><span id="venueText">Jl. Tarmidzi Kadir, Lrg. Kasuari Kel. Pakuan Baru, Kec. Jambi Selatan, Kota Jambi</span></div></div>
-                        <p class="map-help"></p>
-                        <button class="map-button" id="mapBtn" type="button">⌖ &nbsp; Buka Google Maps</button>
-                    </article>
-
-                    <!-- Hitung Mundur -->
-                    <article class="card countdown-card">
-                        <h3 class="card-title"><span class="symbol">⌛</span> Hitung Mundur Acara</h3>
-                        <div class="countdown" aria-live="polite">
-                            <div class="timebox"><strong id="days">--</strong><span>Hari</span></div>
-                            <div class="timebox"><strong id="hours">--</strong><span>Jam</span></div>
-                            <div class="timebox"><strong id="minutes">--</strong><span>Menit</span></div>
-                            <div class="timebox"><strong id="seconds">--</strong><span>Detik</span></div>
-                        </div>
-                        <p class="countdown-note" id="countdownNote">“Semoga acara ini membawa keberkahan.”</p>
-                    </article>
-                </div>
+                <article class="card">
+                    <h3 class="card-title"><span class="symbol">♔</span> Tentang Si Kecil</h3>
+                    <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Anak</strong>Nareendra AthaRazka Alfiqri</div></div>
+                    <div class="detail-line"><span class="symbol">✦</span><div><strong>Nama Panggilan</strong>Nareendra</div></div>
+                    <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Ayah</strong>Ahmadun Solehan Fiqri</div></div>
+                    <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Ibu</strong>Nadia Ningsih</div></div>
+                </article>
             </div>
         </section>
 
-        <!-- SEKSI 2: UCAPAN UNDANGAN DAN KONFIRMASI KEHADIRAN (RSVP) DENGAN SPASI LONGI -->
+        <!-- SEKSI 2: DETAIL ACARA (BERDIRI SENDIRI BERJARAK) -->
+        <section class="section" id="acara">
+            <div class="section-inner">
+                <article class="card">
+                    <h3 class="card-title"><span class="symbol">✧</span> Detail Acara</h3>
+                    <div class="detail-line"><span class="symbol">▦</span><div><strong>Hari & Tanggal</strong>Sabtu, 24 Oktober 2026</div></div>
+                    <div class="detail-line"><span class="symbol">◷</span><div><strong>Waktu</strong>10.00 WIB</div></div>
+                    <div class="detail-line"><span class="symbol">⌖</span><div><strong>Tempat</strong><span id="venueText">Jl. Tarmidzi Kadir, Lrg. Kasuari Kel. Pakuan Baru, Kec. Jambi Selatan, Kota Jambi</span></div></div>
+                    <p class="map-help"></p>
+                    <button class="map-button" id="mapBtn" type="button">⌖ &nbsp; Buka Google Maps</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEKSI 3: HITUNG MUNDUR ACARA (BERDIRI SENDIRI BERJARAK) -->
         <section class="section">
-            <div class="section-inner content-grid">
-                <!-- Ucapan Undangan -->
+            <div class="section-inner">
+                <article class="card countdown-card">
+                    <h3 class="card-title"><span class="symbol">⌛</span> Hitung Mundur Acara</h3>
+                    <div class="countdown" aria-live="polite">
+                        <div class="timebox"><strong id="days">--</strong><span>Hari</span></div>
+                        <div class="timebox"><strong id="hours">--</strong><span>Jam</span></div>
+                        <div class="timebox"><strong id="minutes">--</strong><span>Menit</span></div>
+                        <div class="timebox"><strong id="seconds">--</strong><span>Detik</span></div>
+                    </div>
+                    <p class="countdown-note" id="countdownNote">“Semoga acara ini membawa keberkahan.”</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEKSI 4: UCAPAN UNDANGAN (BERDIRI SENDIRI BERJARAK) -->
+        <section class="section">
+            <div class="section-inner">
                 <article class="card invitation-copy">
-                    <div class="decor" style="text-align: center; margin-bottom: 12px;">✧ ♧ ✧</div>
-                    <h3 class="card-title">Ucapan Undangan</h3>
+                    <div class="decor" style="text-align: center; margin-bottom: 16px;">✧ ♧ ✧</div>
+                    <h3 class="card-title" style="justify-content: center;">Ucapan Undangan</h3>
                     <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan turut mendoakan putra kami dalam acara tasyakuran Aqiqah ini.</p>
                     <p>Kehadiran serta doa yang diberikan menjadi hadiah yang sangat berarti bagi keluarga kami.</p>
-                    <p style="font-family:'Cinzel',serif;font-style:italic;color:#fef08a;margin-top:20px;">Terima kasih atas perhatian dan doa baiknya.</p>
+                    <p style="font-family:'Cinzel',serif;font-style:italic;color:#fef08a;margin-top:24px;">TERIMA KASIH ATAS PERHATIAN DAN DOA BAIKNYA.</p>
                     <div style="font-size:2.2rem;color:var(--gold);text-align:center;margin-top:24px">☾ ✦ ☽</div>
                 </article>
+            </div>
+        </section>
 
-                <!-- Konfirmasi Kehadiran (RSVP) -->
-                <section class="card rsvp-card" id="rsvp">
+        <!-- SEKSI 5: KONFIRMASI KEHADIRAN / RSVP (BERDIRI SENDIRI BERJARAK) -->
+        <section class="section" id="rsvp">
+            <div class="section-inner">
+                <section class="card rsvp-card">
                     <h3 class="card-title"><span class="symbol">✉</span> Konfirmasi Kehadiran (RSVP)</h3>
-                    <p class="muted" style="margin-top:-12px;margin-bottom:20px;line-height:1.6">Mohon isi konfirmasi berikut agar kami dapat mempersiapkan acara dengan baik.</p>
+                    <p class="muted" style="margin-top:-14px;margin-bottom:24px;line-height:1.6">Mohon isi konfirmasi berikut agar kami dapat mempersiapkan acara dengan baik.</p>
                     <form class="rsvp-form" id="rsvpForm">
                         <div class="formrow">
                             <div class="field">
@@ -570,7 +551,7 @@
             </div>
         </section>
 
-        <!-- SEKSI 3: DAFTAR UCAPAN TAMU -->
+        <!-- SEKSI 6: DAFTAR UCAPAN TAMU -->
         <section class="section" id="ucapan">
             <div class="section-inner">
                 <div class="message-head">
@@ -587,13 +568,13 @@
             </div>
         </section>
 
-        <!-- SEKSI 4: TABEL GIFT / HADIAH DIGITAL -->
+        <!-- SEKSI 7: HADIAH DIGITAL -->
         <section class="section" id="gift">
             <div class="section-inner">
                 <div style="text-align: center; margin-bottom: 28px;">
                     <p class="section-kicker">TANDA KASIH</p>
                     <h2 style="margin-bottom:8px">Kirim Hadiah Digital</h2>
-                    <p class="lead" style="font-size: 0.95rem;">Doa Bapak/Ibu/Sdr/I merupakan karunia terindah bagi kami. Namun jika Anda ingin mengirimkan tanda kasih, dapat melalui rekening berikut:</p>
+                    <p class="lead" style="font-size: 0.95rem;">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda ingin mengirimkan tanda kasih, dapat melalui rekening berikut:</p>
                 </div>
                 <div class="gift-grid">
                     <!-- KARTU ATM BANK BRI -->
@@ -603,13 +584,13 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="bank-logo-img">
                         </div>
                         <div>
-                            <p class="card-number">1234 0100 5678 502</p>
+                            <p class="card-number">5634 0101 1903 504</p>
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px;">
                                 <div>
                                     <div class="card-holder">An.</div>
                                     <div class="card-name">NADIA NINGSIH</div>
                                 </div>
-                                <div style="font-size: 0.75rem; font-family: monospace; color: #93c5fd;">DEBIT / ATM</div>
+                                <div style="font-size: 0.75rem; font-family: monospace; color: #93c5fd;">Bank Rakyat Indonesia</div>
                             </div>
                         </div>
                         <button class="map-button" style="margin-top: 12px; padding: 10px; font-size: 0.8rem;" onclick="copyAcc('123401005678502', 'Nomor Rekening BRI berhasil disalin!')" type="button">
@@ -632,7 +613,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px;">
                                 <div>
                                     <div class="card-holder">An.</div>
-                                    <div class="card-name">Nadia Ningsih</div>
+                                    <div class="card-name">NADIA NINGSIH</div>
                                 </div>
                                 <div style="font-size: 0.75rem; font-family: monospace; color: #6ee7b7;">SYARIAH INDONESIA</div>
                             </div>
