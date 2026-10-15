@@ -53,6 +53,7 @@
         button { cursor: pointer; }
         .hidden { display: none !important; }
 
+        /* Cover Depan Full Screen Tanpa Bingkai */
         .cover {
             position: fixed;
             inset: 0;
@@ -60,40 +61,35 @@
             height: 100vh;
             height: 100dvh;
             z-index: 9999;
-            display: grid;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            padding: clamp(12px, 3vh, 24px) 16px;
+            padding: clamp(20px, 5vh, 40px) 20px;
             color: white;
-            background: radial-gradient(ellipse at 50% 40%, #1e293b 0, #0f172a 43%, #030712 100%);
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            background: radial-gradient(ellipse at 50% 40%, #1e293b 0, #0f172a 50%, #030712 100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .cover.cover-exit {
             opacity: 0;
-            transform: scale(1.05);
+            transform: scale(1.04);
             pointer-events: none;
-        }
-        .stars {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(2px 2px at 10% 15%, #fff, transparent), radial-gradient(2px 2px at 72% 20%, #ffe5a1, transparent), radial-gradient(1.5px 1.5px at 85% 63%, #fff, transparent), radial-gradient(2px 2px at 30% 77%, #ffe5a1, transparent);
-            background-size: 180px 160px;
-            animation: twinkle 3.8s infinite alternate;
         }
         .moon {
             position: absolute;
             right: 8%;
             top: 7%;
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             background: #ffe7a1;
-            box-shadow: 0 0 30px #ffdf8d88;
+            box-shadow: 0 0 35px #ffdf8d88;
         }
         .moon:after {
             content: '';
             position: absolute;
-            inset: -4px 0 0 16px;
+            inset: -4px 0 0 18px;
             border-radius: 50%;
             background: #0f172a;
         }
@@ -101,8 +97,8 @@
             position: absolute;
             left: 7%;
             top: 10%;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             background: linear-gradient(140deg, #bde7ff, #3986d1);
             box-shadow: inset -10px -8px 0 #1e4c8d;
@@ -110,81 +106,78 @@
         .planet:after {
             content: '';
             position: absolute;
-            width: 82px;
-            height: 20px;
+            width: 90px;
+            height: 22px;
             border: 2px solid var(--gold-border);
             border-radius: 50%;
-            left: -11px;
-            top: 18px;
+            left: -13px;
+            top: 20px;
             transform: rotate(-24deg);
         }
-        .cover-card {
+
+        .cover-content {
             position: relative;
             z-index: 2;
-            width: min(100%, 580px);
-            max-height: calc(100dvh - 32px);
-            overflow-y: auto;
+            max-width: 720px;
+            width: 100%;
             text-align: center;
-            padding: clamp(20px, 4vw, 42px) clamp(16px, 4vw, 36px);
-            border: 2px solid var(--gold-border);
-            border-radius: 28px;
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
-            color: #f8fafc;
-            box-shadow: 0 24px 70px rgba(233, 189, 85, 0.25);
             animation: rise 0.8s ease both;
         }
-        .crown { font-size: 34px; color: var(--gold); margin-bottom: 8px; }
-        .eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; color: var(--gold); margin: 0 0 10px; font-family: 'Cinzel', serif; }
-        .cover h1 { font: 700 clamp(2rem, 6.5vw, 4rem)/1.08 'Cinzel', serif; margin: 0 auto 12px; color: #fef08a; }
+        .crown { font-size: 38px; color: var(--gold); margin-bottom: 10px; }
+        .eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; color: var(--gold); margin: 0 0 14px; font-family: 'Cinzel', serif; }
+        .cover h1 { font: 700 clamp(2.4rem, 7vw, 4.2rem)/1.1 'Cinzel', serif; margin: 0 auto 16px; color: #fef08a; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
         .ribbon {
             display: inline-block;
             background: linear-gradient(110deg, #fef08a, #e9bd55, #fef08a);
-            padding: 8px 24px;
+            padding: 10px 30px;
             border-radius: 4px;
             clip-path: polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%);
-            font: 600 clamp(0.95rem, 2.5vw, 1.35rem) 'Cinzel', serif;
+            font: 600 clamp(1rem, 2.8vw, 1.45rem) 'Cinzel', serif;
             color: #0f172a;
-            margin: 0 0 16px;
+            margin: 0 0 22px;
+            box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3);
         }
-        .cover-copy { line-height: 1.6; max-width: 440px; margin: 0 auto 18px; color: #cbd5e1; font-size: 0.9rem; }
+        .cover-copy { line-height: 1.8; max-width: 520px; margin: 0 auto 24px; color: #cbd5e1; font-size: 0.98rem; }
         .event-pill {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
             border: 1px solid var(--gold-border);
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 16px;
-            padding: 10px 14px;
-            margin: 0 auto 18px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 999px;
+            padding: 12px 24px;
+            margin: 0 auto 28px;
             width: max-content;
             max-width: 100%;
-            font-size: 0.82rem;
+            font-size: 0.88rem;
             font-weight: 700;
             color: #fef08a;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
-        .event-pill span { display: flex; gap: 6px; align-items: center; }
+        .event-pill span { display: flex; gap: 8px; align-items: center; }
         .event-pill i { font-style: normal; color: var(--gold); }
         .primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             border: 0;
             border-radius: 999px;
-            padding: 13px 24px;
+            padding: 15px 32px;
             text-decoration: none;
             font-weight: 700;
             background: linear-gradient(130deg, #e9bd55, #ca8a04);
             color: #0f172a;
-            box-shadow: 0 8px 22px rgba(233, 189, 85, 0.35);
-            transition: 0.2s;
+            box-shadow: 0 8px 26px rgba(233, 189, 85, 0.4);
+            transition: 0.25s;
             font-family: 'Cinzel', serif;
+            font-size: 1rem;
         }
-        .primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(233, 189, 85, 0.55); }
+        .primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(233, 189, 85, 0.6); }
         .primary:disabled { opacity: 0.6; cursor: wait; }
-        .small-note { font-size: 0.72rem; color: #94a3b8; margin: 14px 0 0; }
+        .small-note { font-size: 0.78rem; color: #94a3b8; margin: 18px 0 0; }
 
         .music-toggle {
             position: fixed;
@@ -220,7 +213,7 @@
             overflow: hidden;
         }
 
-        /* Latar Belakang Bintang SVG 3D Emas Berkilau Nyata */
+        /* Latar Belakang Animasi Meteor Jatuh Emas & Ekor Pendaran */
         .night-sky-bg {
             position: absolute;
             inset: 0;
@@ -228,31 +221,45 @@
             z-index: 1;
             overflow: hidden;
         }
-        .star-svg-container {
+        .meteor-container {
             position: absolute;
-            transform-origin: center center;
-            animation: goldStarGlow 3s ease-in-out infinite alternate;
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, #ffffff 0%, #fef08a 40%, rgba(233, 189, 85, 0.8) 70%, transparent 100%);
+            filter: drop-shadow(0 0 8px #fef08a) drop-shadow(0 0 16px #e9bd55);
+            transform: rotate(-35deg);
+            opacity: 0;
+            animation: meteorFall 4s linear infinite;
         }
-        .star-svg-container svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 12px rgba(254, 224, 110, 0.95)) drop-shadow(0 0 25px rgba(233, 189, 85, 0.8));
+        .meteor-head {
+            position: absolute;
+            left: 0;
+            top: -4px;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ffffff 0%, #fef08a 60%, #e9bd55 100%);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            filter: drop-shadow(0 0 10px #ffffff);
         }
 
-        @keyframes goldStarGlow {
-            0% { 
-                opacity: 0.25; 
-                transform: scale(0.6) rotate(0deg); 
-                filter: drop-shadow(0 0 4px rgba(233, 189, 85, 0.4));
+        @keyframes meteorFall {
+            0% {
+                opacity: 0;
+                transform: translateX(0) translateY(0) rotate(-35deg);
             }
-            50% {
-                opacity: 0.85;
-                filter: drop-shadow(0 0 18px rgba(254, 240, 138, 1)) drop-shadow(0 0 32px rgba(234, 179, 8, 0.9));
+            10% {
+                opacity: 1;
             }
-            100% { 
-                opacity: 1; 
-                transform: scale(1.35) rotate(25deg); 
-                filter: drop-shadow(0 0 26px rgba(255, 250, 180, 1)) drop-shadow(0 0 45px rgba(245, 158, 11, 1));
+            30% {
+                opacity: 0.8;
+            }
+            45% {
+                opacity: 0;
+                transform: translateX(-450px) translateY(450px) rotate(-35deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-450px) translateY(450px) rotate(-35deg);
             }
         }
 
@@ -261,8 +268,9 @@
             z-index: 3;
         }
         
+        /* Memberikan jarak antar seksi lebih luas agar tidak dempet */
         .section { 
-            padding: clamp(48px, 7vw, 88px) clamp(14px, 3vw, 38px); 
+            padding: clamp(64px, 9vw, 110px) clamp(16px, 4vw, 42px); 
             width: 100%; 
             margin: 0 auto; 
             opacity: 0;
@@ -278,81 +286,84 @@
             transform: translateY(-20px);
         }
 
-        .section-inner { max-width: 1320px; margin: auto; }
-        .intro { text-align: center; padding-top: 70px; padding-bottom: 52px; background: radial-gradient(ellipse at top, rgba(30, 41, 59, 0.6), transparent 72%); }
-        .section-kicker { color: var(--gold); font-weight: 700; letter-spacing: 0.17em; font-size: 0.75rem; font-family: 'Cinzel', serif; }
-        .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Cinzel', serif; margin: 12px 0 18px; color: #fef08a; }
-        .lead { max-width: 720px; line-height: 1.8; color: #cbd5e1; margin: 0 auto; }
-        .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
+        .section-inner { max-width: 1240px; margin: auto; }
+        .intro { text-align: center; padding-top: 80px; padding-bottom: 60px; background: radial-gradient(ellipse at top, rgba(30, 41, 59, 0.6), transparent 72%); }
+        .section-kicker { color: var(--gold); font-weight: 700; letter-spacing: 0.2em; font-size: 0.8rem; font-family: 'Cinzel', serif; }
+        .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Cinzel', serif; margin: 14px 0 20px; color: #fef08a; }
+        .lead { max-width: 720px; line-height: 1.85; color: #cbd5e1; margin: 0 auto; font-size: 1rem; }
+        
+        /* Grid Tabel Utama dengan Jarak Longgar */
+        .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 40px; }
         
         .card, .countdown-card, .invitation-copy, .rsvp-card { 
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.85)); 
             border: 2px solid var(--gold-border); 
             border-radius: 26px; 
-            padding: clamp(20px, 3vw, 32px); 
-            box-shadow: 0 14px 45px rgba(233, 189, 85, 0.15); 
+            padding: clamp(24px, 3.5vw, 36px); 
+            box-shadow: 0 16px 50px rgba(233, 189, 85, 0.15); 
             min-width: 0; 
             color: #f8fafc;
         }
-        .card-title { display: flex; align-items: center; gap: 12px; font: 600 1.25rem 'Cinzel', serif; margin: 0 0 20px; color: #fef08a; }
+        .card-title { display: flex; align-items: center; gap: 12px; font: 600 1.3rem 'Cinzel', serif; margin: 0 0 24px; color: #fef08a; }
         .card-title .symbol { font-family: inherit; color: var(--gold); font-size: 1.5rem; }
-        .detail-line { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed rgba(233, 189, 85, 0.3); font-size: 0.9rem; line-height: 1.55; color: #e2e8f0; }
+        .detail-line { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed rgba(233, 189, 85, 0.3); font-size: 0.92rem; line-height: 1.6; color: #e2e8f0; }
         .detail-line:last-child { border-bottom: 0; }
         .detail-line .symbol { font-size: 1.15rem; color: var(--gold); min-width: 25px; }
-        .detail-line strong { display: block; color: #fef08a; }
-        .map-help { font-size: 0.78rem; color: var(--muted); margin: 10px 0 15px; line-height: 1.6; }
-        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 13px 16px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); transition: transform 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .detail-line strong { display: block; color: #fef08a; margin-bottom: 2px; }
+        .map-help { font-size: 0.78rem; color: var(--muted); margin: 12px 0 18px; line-height: 1.6; }
+        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 14px 18px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); transition: transform 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
         .map-button:hover { transform: translateY(-2px); }
         
         .countdown-card { background: linear-gradient(145deg, #0f172a, #1e293b); color: white; position: relative; overflow: hidden; }
         .countdown-card .card-title { color: #fef08a; }
         .countdown-card .card-title .symbol { color: var(--gold); }
-        .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-        .timebox { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); border-radius: 15px; text-align: center; padding: 16px 4px; }
-        .timebox strong { display: block; font-size: clamp(1.25rem, 2.5vw, 2rem); color: #fef08a; font-family: 'Cinzel', serif; }
-        .timebox span { font-size: 0.7rem; color: #cbd5e1; }
-        .countdown-note { text-align: center; color: #fef08a; font: italic 1rem 'Cinzel', serif; line-height: 1.6; margin: 20px 0 0; }
+        .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+        .timebox { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); border-radius: 16px; text-align: center; padding: 18px 6px; }
+        .timebox strong { display: block; font-size: clamp(1.3rem, 2.8vw, 2.2rem); color: #fef08a; font-family: 'Cinzel', serif; }
+        .timebox span { font-size: 0.72rem; color: #cbd5e1; }
+        .countdown-note { text-align: center; color: #fef08a; font: italic 1rem 'Cinzel', serif; line-height: 1.6; margin: 24px 0 0; }
         
-        .content-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.5fr); gap: 18px; align-items: stretch; }
+        /* Grid Jarak Ucapan Undangan & RSVP */
+        .content-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 32px; align-items: stretch; }
         .invitation-copy { position: relative; overflow: hidden; min-height: 100%; background: linear-gradient(150deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); }
-        .invitation-copy p { line-height: 1.9; color: #cbd5e1; }
+        .invitation-copy p { line-height: 2; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 16px; }
         .invitation-copy .decor { font-size: 2.3rem; color: var(--gold); }
         
         .rsvp-card { background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); }
-        .rsvp-form { display: grid; gap: 15px; }
-        .formrow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .field { display: grid; gap: 7px; min-width: 0; }
-        .field label { font-size: 0.8rem; font-weight: 700; color: #fef08a; }
-        .field input, .field select, .field textarea { width: 100%; min-width: 0; border: 1px solid rgba(233, 189, 85, 0.4); border-radius: 12px; padding: 13px 14px; background: rgba(15, 23, 42, 0.8); color: #f8fafc; outline: none; }
+        .rsvp-form { display: grid; gap: 18px; }
+        .formrow { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .field { display: grid; gap: 8px; min-width: 0; }
+        .field label { font-size: 0.85rem; font-weight: 700; color: #fef08a; }
+        .field input, .field select, .field textarea { width: 100%; min-width: 0; border: 1px solid rgba(233, 189, 85, 0.4); border-radius: 12px; padding: 14px 16px; background: rgba(15, 23, 42, 0.8); color: #f8fafc; outline: none; }
         .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(233, 189, 85, 0.2); }
-        .field textarea { min-height: 95px; resize: vertical; }
-        .charcount { text-align: right; font-size: 0.72rem; color: #94a3b8; margin-top: -4px; }
+        .field textarea { min-height: 100px; resize: vertical; }
+        .charcount { text-align: right; font-size: 0.75rem; color: #94a3b8; margin-top: -4px; }
         .rsvp-form .primary { width: 100%; }
-        .realtime-note { display: flex; align-items: center; gap: 8px; color: #4ade80; font-size: 0.75rem; margin-top: 13px; }
+        .realtime-note { display: flex; align-items: center; gap: 8px; color: #4ade80; font-size: 0.78rem; margin-top: 16px; }
         .live-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.2); }
-        .message-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-        .live-badge { font-size: 0.72rem; border: 1px solid rgba(74, 222, 128, 0.4); color: #4ade80; background: rgba(74, 222, 128, 0.1); padding: 7px 11px; border-radius: 999px; font-weight: 700; }
-        .messages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
+        .message-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+        .live-badge { font-size: 0.75rem; border: 1px solid rgba(74, 222, 128, 0.4); color: #4ade80; background: rgba(74, 222, 128, 0.1); padding: 8px 14px; border-radius: 999px; font-weight: 700; }
         
-        .wish { border: 1px solid var(--gold-border); border-radius: 18px; background: rgba(15, 23, 42, 0.85); padding: 20px; min-width: 0; overflow-wrap: anywhere; box-shadow: 0 8px 25px rgba(233, 189, 85, 0.1); }
-        .wish-top { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
-        .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #334155, #1e293b); color: var(--gold); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; border: 1px solid var(--gold-border); }
-        .wish strong { display: block; font-size: .9rem; color: #fef08a; }
-        .wish small { display: block; color: #94a3b8; font-size: .7rem; margin-top: 3px; }
-        .wish p { line-height: 1.65; font-size: .84rem; margin: 0; color: #cbd5e1; }
-        .empty { grid-column: 1/-1; text-align: center; padding: 28px; border: 1px dashed var(--gold-border); border-radius: 18px; color: #94a3b8; background: rgba(15, 23, 42, 0.5); }
+        .messages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .wish { border: 1px solid var(--gold-border); border-radius: 20px; background: rgba(15, 23, 42, 0.85); padding: 22px; min-width: 0; overflow-wrap: anywhere; box-shadow: 0 8px 25px rgba(233, 189, 85, 0.1); }
+        .wish-top { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+        .avatar { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #334155, #1e293b); color: var(--gold); font-weight: 700; font-size: 1.15rem; flex-shrink: 0; border: 1px solid var(--gold-border); }
+        .wish strong { display: block; font-size: 0.95rem; color: #fef08a; }
+        .wish small { display: block; color: #94a3b8; font-size: 0.72rem; margin-top: 3px; }
+        .wish p { line-height: 1.7; font-size: 0.88rem; margin: 0; color: #cbd5e1; }
+        .empty { grid-column: 1/-1; text-align: center; padding: 32px; border: 1px dashed var(--gold-border); border-radius: 20px; color: #94a3b8; background: rgba(15, 23, 42, 0.5); }
         
         /* Gift Section - Real ATM Cards Styles */
-        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px; max-width: 760px; margin: 28px auto 0; }
+        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; max-width: 780px; margin: 32px auto 0; }
         
         .atm-card {
             width: 100%;
-            height: 205px;
-            border-radius: 18px;
-            padding: 22px;
+            height: 210px;
+            border-radius: 20px;
+            padding: 24px;
             color: #ffffff;
             position: relative;
-            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.3);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -371,10 +382,10 @@
 
         .card-top { display: flex; justify-content: space-between; align-items: center; }
         .card-chip {
-            width: 42px;
-            height: 32px;
+            width: 44px;
+            height: 34px;
             background: linear-gradient(135deg, #fef08a 0%, #e9bd55 50%, #ca8a04 100%);
-            border-radius: 5px;
+            border-radius: 6px;
             position: relative;
             box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
             border: 1px solid rgba(0,0,0,0.2);
@@ -382,64 +393,71 @@
         .card-chip::after {
             content: '';
             position: absolute;
-            inset: 3px;
+            inset: 4px;
             border: 1px solid rgba(0,0,0,0.25);
             border-radius: 3px;
         }
 
-        .card-number { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 700; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); margin: 6px 0; }
+        .card-number { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); margin: 8px 0; }
         .card-holder { font-size: 0.8rem; text-transform: uppercase; color: #cbd5e1; letter-spacing: 1px; }
-        .card-name { font-size: 0.95rem; font-weight: 700; font-family: 'Cinzel', serif; color: #fef08a; }
+        .card-name { font-size: 0.98rem; font-weight: 700; font-family: 'Cinzel', serif; color: #fef08a; }
 
-        .bank-logo-img { height: 26px; object-fit: contain; filter: brightness(0) invert(1); }
+        .bank-logo-img { height: 28px; object-fit: contain; filter: brightness(0) invert(1); }
 
-        .footer { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at top, #1e293b, #030712 72%); color: white; padding: 72px 20px 54px; border-top: 1px solid var(--gold-border); }
-        .footer h2 { font: 600 clamp(2.2rem, 5vw, 3.6rem) 'Cinzel', serif; color: #fef08a; margin: 12px 0; }
-        .footer p { color: #cbd5e1; line-height: 1.8; }
-        .signature { font: italic 600 clamp(1.15rem, 3vw, 1.7rem) 'Cinzel', serif; color: var(--gold) !important; }
-        .backtop { margin-top: 22px; border: 1px solid var(--gold-border); background: rgba(255,255,255,0.05); color: #fef08a; padding: 11px 20px; border-radius: 999px; font-family: 'Cinzel', serif; }
+        .footer { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at top, #1e293b, #030712 72%); color: white; padding: 80px 20px 60px; border-top: 1px solid var(--gold-border); }
+        .footer h2 { font: 600 clamp(2.2rem, 5vw, 3.6rem) 'Cinzel', serif; color: #fef08a; margin: 14px 0; }
+        .footer p { color: #cbd5e1; line-height: 1.85; }
+        .signature { font: italic 600 clamp(1.2rem, 3vw, 1.8rem) 'Cinzel', serif; color: var(--gold) !important; margin-top: 10px; }
+        .backtop { margin-top: 28px; border: 1px solid var(--gold-border); background: rgba(255,255,255,0.05); color: #fef08a; padding: 12px 24px; border-radius: 999px; font-family: 'Cinzel', serif; }
         
         .toast { position: fixed; right: 16px; bottom: 80px; z-index: 100000; width: max-content; max-width: calc(100vw - 32px); background: #0f172a; border: 1px solid var(--gold-border); color: #fff; padding: 14px 18px; border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); opacity: 0; transform: translateY(10px); pointer-events: none; transition: 0.25s; line-height: 1.5; }
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast.error { background: #7f1d1d; border-color: #f87171; }
         .loader { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.5); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes twinkle { from { opacity: .55; } to { opacity: 1; } }
-        @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-        @media(max-width: 900px) { .details-grid { grid-template-columns: 1fr 1fr; } .countdown-card { grid-column: 1/-1; } .content-grid { grid-template-columns: 1fr; } .messages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media(max-width: 600px) { .cover { padding: 16px 12px; } .cover-card { border-radius: 24px; padding: 24px 16px; } .moon { width: 50px; height: 50px; right: 5%; top: 5%; } .planet { transform: scale(0.6); left: -4%; top: 8%; } .event-pill { font-size: 0.76rem; gap: 8px; padding: 10px 12px; } .section { padding: 48px 13px; } .intro { padding-top: 48px; } .details-grid { grid-template-columns: 1fr; } .countdown-card { grid-column: auto; } .countdown { gap: 6px; } .timebox { padding: 13px 2px; } .timebox span { font-size: 0.64rem; } .formrow { grid-template-columns: 1fr; } .messages { grid-template-columns: 1fr; } .card, .rsvp-card { border-radius: 20px; padding: 20px; } .footer { padding: 58px 17px 42px; } }
+        @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @media(max-width: 960px) { 
+            .details-grid { grid-template-columns: 1fr; gap: 24px; } 
+            .content-grid { grid-template-columns: 1fr; gap: 24px; } 
+            .messages { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } 
+        }
+        @media(max-width: 600px) { 
+            .cover { padding: 30px 16px; } 
+            .moon { width: 55px; height: 55px; right: 5%; top: 4%; } 
+            .planet { transform: scale(0.65); left: -4%; top: 6%; } 
+            .event-pill { font-size: 0.8rem; gap: 10px; padding: 10px 18px; } 
+            .section { padding: 52px 16px; } 
+            .intro { padding-top: 52px; } 
+            .countdown { gap: 6px; } 
+            .timebox { padding: 14px 2px; } 
+            .timebox span { font-size: 0.65rem; } 
+            .formrow { grid-template-columns: 1fr; gap: 14px; } 
+            .messages { grid-template-columns: 1fr; } 
+            .card, .rsvp-card { border-radius: 20px; padding: 22px; } 
+            .footer { padding: 60px 18px 45px; } 
+        }
     </style>
 </head>
 <body class="cover-lock">
 
-    <!-- Definisi Gradasi Emas Universal SVG untuk Bintang 3D -->
-    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="gold3dGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#ffffff" />
-          <stop offset="25%" stop-color="#fff5a0" />
-          <stop offset="50%" stop-color="#f59e0b" />
-          <stop offset="80%" stop-color="#d97706" />
-          <stop offset="100%" stop-color="#78350f" />
-        </linearGradient>
-      </defs>
-    </svg>
-
-    <!-- 1. Tampilan Awal (Cover / Sampul) -->
+    <!-- 1. Tampilan Awal Full Screen (Cover / Sampul) tanpa kotak bingkai -->
     <section class="cover" id="cover">
-        <div class="stars"></div>
         <div class="moon"></div>
         <div class="planet"></div>
-        <div class="cover-card">
+        
+        <div class="cover-content">
             <div class="crown">♔</div>
             <p class="eyebrow">UNDANGAN PENUH SYUKUR</p>
             <h1>Nareendra<br>AthaRazka Alfiqri</h1>
             <div class="ribbon">Tasyakuran Aqiqah</div>
             <p class="cover-copy">Dengan memohon rahmat dan ridha Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara Aqiqah putra kami tercinta.</p>
+            
             <div class="event-pill">
                 <span><i>▦</i> Sabtu, 24 Oktober 2026</span>
                 <span><i>◷</i> 10.00 WIB</span>
             </div>
+            
             <button class="primary" id="openBtn" type="button">Buka Undangan <span>→</span></button>
             <p class="small-note">Sebuah doa indah untuk langkah kecil yang penuh berkah ✦</p>
         </div>
@@ -448,7 +466,7 @@
     <!-- 2. Seluruh Konten Utama Undangan -->
     <div class="page hidden" id="invitation">
         
-        <!-- Latar Belakang Bintang SVG 3D Emas Berkilau Nyata -->
+        <!-- Latar Belakang Animasi Meteor Jatuh Emas -->
         <div class="night-sky-bg" id="skyBg"></div>
 
         <section class="section intro" id="home">
@@ -456,14 +474,16 @@
                 <p class="section-kicker">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
                 <h2>Assalamu’alaikum<br><span style="color:#fef08a">Warahmatullahi Wabarakatuh</span></h2>
                 <p class="lead">Dengan penuh rasa syukur atas karunia Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara tasyakuran Aqiqah putra kami.</p>
-                <h2 style="margin-top:28px">Nareendra AthaRazka Alfiqri</h2>
+                <h2 style="margin-top:32px">Nareendra AthaRazka Alfiqri</h2>
                 <p class="lead">Semoga menjadi anak yang saleh, cerdas, berakhlak mulia, serta membawa kebahagiaan dan keberkahan bagi keluarga.</p>
             </div>
         </section>
 
-        <section class="section" id="acara" style="padding-top:20px">
+        <!-- SEKSI 1: TABEL TENTANG SI KECIL, DETAIL ACARA, DAN HITUNG MUNDUR -->
+        <section class="section" id="acara">
             <div class="section-inner">
                 <div class="details-grid">
+                    <!-- Tabel Tentang Si Kecil -->
                     <article class="card">
                         <h3 class="card-title"><span class="symbol">♔</span> Tentang Si Kecil</h3>
                         <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Anak</strong>Nareendra AthaRazka Alfiqri</div></div>
@@ -472,6 +492,7 @@
                         <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Ibu</strong>Nadia Ningsih</div></div>
                     </article>
 
+                    <!-- Detail Acara -->
                     <article class="card">
                         <h3 class="card-title"><span class="symbol">✧</span> Detail Acara</h3>
                         <div class="detail-line"><span class="symbol">▦</span><div><strong>Hari & Tanggal</strong>Sabtu, 24 Oktober 2026</div></div>
@@ -481,6 +502,7 @@
                         <button class="map-button" id="mapBtn" type="button">⌖ &nbsp; Buka Google Maps</button>
                     </article>
 
+                    <!-- Hitung Mundur -->
                     <article class="card countdown-card">
                         <h3 class="card-title"><span class="symbol">⌛</span> Hitung Mundur Acara</h3>
                         <div class="countdown" aria-live="polite">
@@ -495,20 +517,23 @@
             </div>
         </section>
 
-        <section class="section" style="padding-top:10px">
+        <!-- SEKSI 2: UCAPAN UNDANGAN DAN KONFIRMASI KEHADIRAN (RSVP) DENGAN SPASI LONGI -->
+        <section class="section">
             <div class="section-inner content-grid">
+                <!-- Ucapan Undangan -->
                 <article class="card invitation-copy">
-                    <div class="decor" style="text-align: center;">✧ ♧ ✧</div>
+                    <div class="decor" style="text-align: center; margin-bottom: 12px;">✧ ♧ ✧</div>
                     <h3 class="card-title">Ucapan Undangan</h3>
                     <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan turut mendoakan putra kami dalam acara tasyakuran Aqiqah ini.</p>
                     <p>Kehadiran serta doa yang diberikan menjadi hadiah yang sangat berarti bagi keluarga kami.</p>
-                    <p style="font-family:'Cinzel',serif;font-style:italic;color:#fef08a;">Terima kasih atas perhatian dan doa baiknya.</p>
-                    <div style="font-size:2rem;color:var(--gold);text-align:center;margin-top:20px">☾ ✦ ☽</div>
+                    <p style="font-family:'Cinzel',serif;font-style:italic;color:#fef08a;margin-top:20px;">Terima kasih atas perhatian dan doa baiknya.</p>
+                    <div style="font-size:2.2rem;color:var(--gold);text-align:center;margin-top:24px">☾ ✦ ☽</div>
                 </article>
 
+                <!-- Konfirmasi Kehadiran (RSVP) -->
                 <section class="card rsvp-card" id="rsvp">
                     <h3 class="card-title"><span class="symbol">✉</span> Konfirmasi Kehadiran (RSVP)</h3>
-                    <p class="muted" style="margin-top:-10px;line-height:1.6">Mohon isi konfirmasi berikut agar kami dapat mempersiapkan acara dengan baik.</p>
+                    <p class="muted" style="margin-top:-12px;margin-bottom:20px;line-height:1.6">Mohon isi konfirmasi berikut agar kami dapat mempersiapkan acara dengan baik.</p>
                     <form class="rsvp-form" id="rsvpForm">
                         <div class="formrow">
                             <div class="field">
@@ -545,12 +570,13 @@
             </div>
         </section>
 
-        <section class="section" id="ucapan" style="padding-top:15px">
+        <!-- SEKSI 3: DAFTAR UCAPAN TAMU -->
+        <section class="section" id="ucapan">
             <div class="section-inner">
                 <div class="message-head">
                     <div>
                         <p class="section-kicker">DOA DAN HARAPAN</p>
-                        <h2 style="margin-bottom:4px">Daftar Ucapan Tamu</h2>
+                        <h2 style="margin-bottom:6px">Daftar Ucapan Tamu</h2>
                         <p class="muted">Setiap ucapan dan doa akan tampil di sini.</p>
                     </div>
                     <span class="live-badge"><span class="live-dot" style="display:inline-block;margin-right:5px"></span> Live Update</span>
@@ -561,13 +587,13 @@
             </div>
         </section>
 
-        <!-- TABEL GIFT / KIRIM HADIAH DENGAN DESAIN KARTU ATM ASLI -->
-        <section class="section" id="gift" style="padding-top:15px">
+        <!-- SEKSI 4: TABEL GIFT / HADIAH DIGITAL -->
+        <section class="section" id="gift">
             <div class="section-inner">
-                <div style="text-align: center; margin-bottom: 24px;">
+                <div style="text-align: center; margin-bottom: 28px;">
                     <p class="section-kicker">TANDA KASIH</p>
-                    <h2 style="margin-bottom:6px">Kirim Hadiah Digital</h2>
-                    <p class="lead" style="font-size: 0.92rem;">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda ingin mengirimkan tanda kasih, dapat melalui rekening berikut:</p>
+                    <h2 style="margin-bottom:8px">Kirim Hadiah Digital</h2>
+                    <p class="lead" style="font-size: 0.95rem;">Doa Bapak/Ibu/Sdr/I merupakan karunia terindah bagi kami. Namun jika Anda ingin mengirimkan tanda kasih, dapat melalui rekening berikut:</p>
                 </div>
                 <div class="gift-grid">
                     <!-- KARTU ATM BANK BRI -->
@@ -577,7 +603,7 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="bank-logo-img">
                         </div>
                         <div>
-                            <p class="card-number">5634 0101 1903 504</p>
+                            <p class="card-number">1234 0100 5678 502</p>
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px;">
                                 <div>
                                     <div class="card-holder">An.</div>
@@ -606,7 +632,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px;">
                                 <div>
                                     <div class="card-holder">An.</div>
-                                    <div class="card-name">NADIA NINGSIH</div>
+                                    <div class="card-name">Nadia Ningsih</div>
                                 </div>
                                 <div style="font-size: 0.75rem; font-family: monospace; color: #6ee7b7;">SYARIAH INDONESIA</div>
                             </div>
@@ -632,7 +658,7 @@
             <button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" type="button">↑ Kembali ke Atas</button>
 
             <!-- Copyright Footer & Real 3D Social Icons -->
-            <div style="margin-top: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; color: #cbd5e1;">
+            <div style="margin-top: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; color: #cbd5e1;">
                 
                 <div style="font-size: 0.78rem; line-height: 1.6; max-width: 600px; padding: 0 16px;">
                     <p style="margin: 0 0 6px 0;">
@@ -673,27 +699,24 @@
     </button>
 
     <script>
-        // Generate Dynamic SVG 3D Golden Sparkle Stars
+        // Generate Dynamic Golden Meteor Falling Stars
         const skyBg = document.getElementById('skyBg');
-        const starPath = "M25 0 L31.5 16.5 L49 19 L36 31 L39.5 48.5 L25 40 L10.5 48.5 L14 31 L1 19 L18.5 16.5 Z";
-
-        for (let i = 0; i < 50; i++) {
-            const container = document.createElement('div');
-            container.className = 'star-svg-container';
-            const size = Math.random() * 26 + 18; // Ukuran bintang diperbesar (18px - 44px)
-            container.style.width = `${size}px`;
-            container.style.height = `${size}px`;
-            container.style.top = `${Math.random() * 100}%`;
-            container.style.left = `${Math.random() * 100}%`;
-            container.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            container.style.animationDelay = `${Math.random() * 3}s`;
-
-            container.innerHTML = `
-                <svg viewBox="0 0 50 50">
-                    <path d="${starPath}" fill="url(#gold3dGradient)" />
-                </svg>
-            `;
-            skyBg.appendChild(container);
+        for (let i = 0; i < 28; i++) {
+            const meteor = document.createElement('div');
+            meteor.className = 'meteor-container';
+            
+            const topPos = Math.random() * 90;
+            const leftPos = Math.random() * 100 + 10;
+            const animDuration = Math.random() * 3 + 2.5;
+            const animDelay = Math.random() * 6;
+            
+            meteor.style.top = `${topPos}%`;
+            meteor.style.left = `${leftPos}%`;
+            meteor.style.animationDuration = `${animDuration}s`;
+            meteor.style.animationDelay = `${animDelay}s`;
+            
+            meteor.innerHTML = `<div class="meteor-head"></div>`;
+            skyBg.appendChild(meteor);
         }
 
         const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/d7xaPto7SARw7JCV8?g_st=ic';
@@ -767,7 +790,7 @@
                 });
 
                 refreshMessages(true);
-            }, 380);
+            }, 450);
         }
 
         $('#openBtn').addEventListener('click', openInvitation);
