@@ -56,7 +56,7 @@
         button { cursor: pointer; }
         .hidden { display: none !important; }
 
-        /* COVER DEPAN BINGKAI DENGAN HEART ANIMATION */
+        /* COVER DEPAN TANPA BINGKAI DENGAN HEART ANIMATION PINK DI TENGAH */
         .cover {
             position: fixed;
             inset: 0;
@@ -64,10 +64,12 @@
             height: 100vh;
             height: 100dvh;
             z-index: 9999;
-            display: grid;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            padding: clamp(12px, 3vh, 24px) 16px;
+            padding: clamp(20px, 4vh, 40px) 16px;
             color: white;
             background: radial-gradient(ellipse at 50% 40%, #1e293b 0, #0f172a 50%, #030712 100%);
             transition: opacity 0.5s ease, transform 0.5s ease;
@@ -86,37 +88,30 @@
             pointer-events: none;
         }
 
-        .cover-card {
+        .cover-content {
             position: relative;
             z-index: 2;
-            width: min(100%, 580px);
-            max-height: calc(100dvh - 32px);
-            overflow-y: auto;
+            max-width: 640px;
+            width: 100%;
             text-align: center;
-            padding: clamp(22px, 4vw, 42px) clamp(18px, 4vw, 36px);
-            border: 2px solid var(--gold-border);
-            border-radius: 28px;
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.94));
-            color: #f8fafc;
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(233, 189, 85, 0.25);
             animation: rise 0.8s ease both;
         }
 
         .crown { font-size: 38px; color: var(--gold); margin-bottom: 8px; }
-        .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; color: var(--gold); margin: 0 0 12px; font-family: 'Cinzel', serif; }
-        .cover h1 { font: 700 clamp(2.2rem, 6.5vw, 4rem)/1.1 'Cinzel', serif; margin: 0 auto 14px; color: #fef08a; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+        .eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; color: var(--gold); margin: 0 0 10px; font-family: 'Cinzel', serif; }
+        .cover h1 { font: 700 clamp(2.3rem, 6.5vw, 4rem)/1.1 'Cinzel', serif; margin: 0 auto 12px; color: #fef08a; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
         .ribbon {
             display: inline-block;
             background: linear-gradient(110deg, #fef08a, #e9bd55, #fef08a);
-            padding: 9px 28px;
+            padding: 8px 26px;
             border-radius: 4px;
             clip-path: polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%);
             font: 600 clamp(0.95rem, 2.5vw, 1.35rem) 'Cinzel', serif;
             color: #0f172a;
-            margin: 0 0 18px;
+            margin: 0 0 16px;
             box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3);
         }
-        .cover-copy { line-height: 1.75; max-width: 480px; margin: 0 auto 20px; color: #cbd5e1; font-size: 0.92rem; }
+        .cover-copy { line-height: 1.75; max-width: 480px; margin: 0 auto 18px; color: #cbd5e1; font-size: 0.92rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
         .event-pill {
             display: flex;
             justify-content: center;
@@ -124,16 +119,17 @@
             gap: 14px;
             flex-wrap: wrap;
             border: 1px solid var(--gold-border);
-            background: rgba(30, 41, 59, 0.85);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
             border-radius: 999px;
-            padding: 10px 20px;
+            padding: 10px 22px;
             margin: 0 auto 22px;
             width: max-content;
             max-width: 100%;
             font-size: 0.84rem;
             font-weight: 700;
             color: #fef08a;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
         .event-pill span { display: flex; gap: 8px; align-items: center; }
         .event-pill i { font-style: normal; color: var(--gold); }
@@ -156,7 +152,7 @@
         }
         .primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(233, 189, 85, 0.6); }
         .primary:disabled { opacity: 0.6; cursor: wait; }
-        .small-note { font-size: 0.75rem; color: #94a3b8; margin: 16px 0 0; }
+        .small-note { font-size: 0.75rem; color: #94a3b8; margin: 14px 0 0; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
 
         .music-toggle {
             position: fixed;
@@ -253,7 +249,7 @@
         .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Cinzel', serif; margin: 14px 0 20px; color: #fef08a; }
         .lead { max-width: 720px; line-height: 1.85; color: #cbd5e1; margin: 0 auto; font-size: 1rem; }
         
-        /* DESAIN BINGKAI GANDA EMAS 3D MEWAH DENGAN ORNAMEN SUDUT */
+        /* DESAIN BINGKAI GANDA EMAS 3D MEWAH KHUSUS HALAMAN UTAMA */
         .luxury-card {
             position: relative;
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.92)); 
@@ -405,7 +401,6 @@
             .section { padding: 16px 12px; margin-bottom: 50px; } 
             .luxury-card { padding: 26px 18px; border-radius: 22px; }
             .cover { padding: 20px 12px; } 
-            .cover-card { border-radius: 22px; padding: 26px 18px; }
             .event-pill { font-size: 0.8rem; gap: 10px; padding: 10px 18px; } 
             .intro { padding-top: 52px; margin-bottom: 20px; } 
             .countdown { gap: 6px; } 
@@ -418,7 +413,7 @@
 </head>
 <body class="cover-lock">
 
-    <!-- 1. Tampilan Awal BINGKAI EMAS DENGAN HEART ANIMATION (Cover / Sampul) -->
+    <!-- 1. Tampilan Awal Full Screen Tanpa Bingkai dengan Animasi Hati Pink di Tengah -->
     <section class="cover" id="cover">
         <!-- Container Canvas Three.js Partikel Hati -->
         <div id="heart-canvas-container"></div>
@@ -428,7 +423,7 @@
             <path id="heart-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
         </svg>
         
-        <div class="cover-card">
+        <div class="cover-content">
             <div class="crown">♔</div>
             <p class="eyebrow">UNDANGAN PENUH SYUKUR</p>
             <h1>Nareendra<br>AthaRazka Alfiqri</h1>
@@ -691,7 +686,7 @@
     </button>
 
     <script>
-        // --- THREE.JS PARTIKEL HATI DI COVER ---
+        // --- THREE.JS PARTIKEL HATI WARNA PINK DI TENGAH COVER ---
         const container = document.getElementById('heart-canvas-container');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -707,23 +702,25 @@
         const vertices = [];
         const tl = gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0.5 });
 
-        for (let i = 0; i < length; i += 0.8) {
+        for (let i = 0; i < length; i += 0.1) {
             const point = path.getPointAtLength(i);
-            const vector = new THREE.Vector3((point.x - 12) * 12, (-point.y + 12) * 12, 0);
+            const vector = new THREE.Vector3(point.x, -point.y, 0);
 
-            vector.x += (Math.random() - 0.5) * 25;
-            vector.y += (Math.random() - 0.5) * 25;
-            vector.z += (Math.random() - 0.5) * 60;
+            vector.x += (Math.random() - 0.5) * 30;
+            vector.y += (Math.random() - 0.5) * 30;
+            vector.z += (Math.random() - 0.5) * 70;
 
             vertices.push(vector);
 
             tl.from(vector, {
-                x: 0,
-                y: 0,
+                x: 600 / 2,
+                y: -552 / 2,
                 z: 0,
                 ease: "power2.inOut",
-                duration: 3
-            }, i * 0.0015);
+                duration: "random(2, 5)"
+            },
+            i * 0.002
+            );
         }
 
         const geometry = new THREE.BufferGeometry();
@@ -731,8 +728,8 @@
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
         const material = new THREE.PointsMaterial({
-            color: 0xf3d068,
-            size: 3.5,
+            color: 0xff69b4, // Warna pink terang sesuai permintaan
+            size: 2.8,
             transparent: true,
             opacity: 0.9,
             blending: THREE.AdditiveBlending
@@ -748,7 +745,7 @@
                 posAttr.setXYZ(i, vertices[i].x, vertices[i].y, vertices[i].z);
             }
             posAttr.needsUpdate = true;
-            particleSystem.rotation.y += 0.003;
+            particleSystem.rotation.y += 0.002;
             renderer.render(scene, camera);
         }
         animateHeart();
