@@ -7,8 +7,11 @@
     <meta name="description" content="Undangan Aqiqah Nareendra AthaRazka Alfiqri">
     <title>Undangan Aqiqah — Nareendra AthaRazka Alfiqri</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js & GSAP CDN untuk Animasi Partikel Hati -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
         :root {
             --navy: #0b2454;
             --blue: #2461a9;
@@ -53,7 +56,7 @@
         button { cursor: pointer; }
         .hidden { display: none !important; }
 
-        /* Cover Depan Full Screen */
+        /* COVER DEPAN BINGKAI DENGAN HEART ANIMATION */
         .cover {
             position: fixed;
             inset: 0;
@@ -61,12 +64,10 @@
             height: 100vh;
             height: 100dvh;
             z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: grid;
+            place-items: center;
             overflow: hidden;
-            padding: clamp(20px, 5vh, 40px) 20px;
+            padding: clamp(12px, 3vh, 24px) 16px;
             color: white;
             background: radial-gradient(ellipse at 50% 40%, #1e293b 0, #0f172a 50%, #030712 100%);
             transition: opacity 0.5s ease, transform 0.5s ease;
@@ -76,82 +77,60 @@
             transform: scale(1.04);
             pointer-events: none;
         }
-        .moon {
+
+        /* Container Canvas Three.js Partikel Hati di Cover */
+        #heart-canvas-container {
             position: absolute;
-            right: 8%;
-            top: 7%;
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            background: #ffe7a1;
-            box-shadow: 0 0 35px #ffdf8d88;
-        }
-        .moon:after {
-            content: '';
-            position: absolute;
-            inset: -4px 0 0 18px;
-            border-radius: 50%;
-            background: #0f172a;
-        }
-        .planet {
-            position: absolute;
-            left: 7%;
-            top: 10%;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            background: linear-gradient(140deg, #bde7ff, #3986d1);
-            box-shadow: inset -10px -8px 0 #1e4c8d;
-        }
-        .planet:after {
-            content: '';
-            position: absolute;
-            width: 90px;
-            height: 22px;
-            border: 2px solid var(--gold-border);
-            border-radius: 50%;
-            left: -13px;
-            top: 20px;
-            transform: rotate(-24deg);
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
         }
 
-        .cover-content {
+        .cover-card {
             position: relative;
             z-index: 2;
-            max-width: 720px;
-            width: 100%;
+            width: min(100%, 580px);
+            max-height: calc(100dvh - 32px);
+            overflow-y: auto;
             text-align: center;
+            padding: clamp(22px, 4vw, 42px) clamp(18px, 4vw, 36px);
+            border: 2px solid var(--gold-border);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.94));
+            color: #f8fafc;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(233, 189, 85, 0.25);
             animation: rise 0.8s ease both;
         }
-        .crown { font-size: 38px; color: var(--gold); margin-bottom: 10px; }
-        .eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; color: var(--gold); margin: 0 0 14px; font-family: 'Cinzel', serif; }
-        .cover h1 { font: 700 clamp(2.4rem, 7vw, 4.2rem)/1.1 'Cinzel', serif; margin: 0 auto 16px; color: #fef08a; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+
+        .crown { font-size: 38px; color: var(--gold); margin-bottom: 8px; }
+        .eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; color: var(--gold); margin: 0 0 12px; font-family: 'Cinzel', serif; }
+        .cover h1 { font: 700 clamp(2.2rem, 6.5vw, 4rem)/1.1 'Cinzel', serif; margin: 0 auto 14px; color: #fef08a; text-shadow: 0 4px 20px rgba(0,0,0,0.6); }
         .ribbon {
             display: inline-block;
             background: linear-gradient(110deg, #fef08a, #e9bd55, #fef08a);
-            padding: 10px 30px;
+            padding: 9px 28px;
             border-radius: 4px;
             clip-path: polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%);
-            font: 600 clamp(1rem, 2.8vw, 1.45rem) 'Cinzel', serif;
+            font: 600 clamp(0.95rem, 2.5vw, 1.35rem) 'Cinzel', serif;
             color: #0f172a;
-            margin: 0 0 22px;
+            margin: 0 0 18px;
             box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3);
         }
-        .cover-copy { line-height: 1.8; max-width: 520px; margin: 0 auto 24px; color: #cbd5e1; font-size: 0.98rem; }
+        .cover-copy { line-height: 1.75; max-width: 480px; margin: 0 auto 20px; color: #cbd5e1; font-size: 0.92rem; }
         .event-pill {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             flex-wrap: wrap;
             border: 1px solid var(--gold-border);
-            background: rgba(30, 41, 59, 0.7);
+            background: rgba(30, 41, 59, 0.85);
             border-radius: 999px;
-            padding: 12px 24px;
-            margin: 0 auto 28px;
+            padding: 10px 20px;
+            margin: 0 auto 22px;
             width: max-content;
             max-width: 100%;
-            font-size: 0.88rem;
+            font-size: 0.84rem;
             font-weight: 700;
             color: #fef08a;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
@@ -165,7 +144,7 @@
             gap: 12px;
             border: 0;
             border-radius: 999px;
-            padding: 15px 32px;
+            padding: 14px 30px;
             text-decoration: none;
             font-weight: 700;
             background: linear-gradient(130deg, #e9bd55, #ca8a04);
@@ -173,11 +152,11 @@
             box-shadow: 0 8px 26px rgba(233, 189, 85, 0.4);
             transition: 0.25s;
             font-family: 'Cinzel', serif;
-            font-size: 1rem;
+            font-size: 0.98rem;
         }
         .primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(233, 189, 85, 0.6); }
         .primary:disabled { opacity: 0.6; cursor: wait; }
-        .small-note { font-size: 0.78rem; color: #94a3b8; margin: 18px 0 0; }
+        .small-note { font-size: 0.75rem; color: #94a3b8; margin: 16px 0 0; }
 
         .music-toggle {
             position: fixed;
@@ -255,26 +234,18 @@
             z-index: 3;
         }
         
-        /* PENGATURAN JARAK SEKSI BERI RUANG LEGA BERJEDA */
+        /* PENGATURAN SEKSI DENGAN BINGKAI MEWAH PROFESIONAL */
         .section { 
-            padding: 30px clamp(16px, 4vw, 36px); 
-            max-width: 900px; 
-            margin: 0 auto 60px auto; 
+            padding: 20px clamp(16px, 4vw, 36px); 
+            max-width: 860px; 
+            margin: 0 auto 65px auto; 
             opacity: 0;
             transform: translateY(35px);
             transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .section:last-of-type {
-            margin-bottom: 20px;
-        }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .section.fade-out {
-            opacity: 0.2;
-            transform: translateY(-20px);
-        }
+        .section:last-of-type { margin-bottom: 20px; }
+        .section.visible { opacity: 1; transform: translateY(0); }
+        .section.fade-out { opacity: 0.2; transform: translateY(-20px); }
 
         .section-inner { width: 100%; margin: auto; }
         .intro { text-align: center; padding-top: 80px; padding-bottom: 40px; margin-bottom: 40px; background: radial-gradient(ellipse at top, rgba(30, 41, 59, 0.6), transparent 72%); }
@@ -282,32 +253,66 @@
         .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Cinzel', serif; margin: 14px 0 20px; color: #fef08a; }
         .lead { max-width: 720px; line-height: 1.85; color: #cbd5e1; margin: 0 auto; font-size: 1rem; }
         
-        /* CARD DENGAN PADDING & BORDER EMAS BERJARAK NYAMAN */
-        .card, .countdown-card, .invitation-copy, .rsvp-card { 
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)); 
-            border: 2px solid var(--gold-border); 
+        /* DESAIN BINGKAI GANDA EMAS 3D MEWAH DENGAN ORNAMEN SUDUT */
+        .luxury-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.92)); 
+            border: 2px solid #e9bd55; 
             border-radius: 28px; 
-            padding: clamp(28px, 4vw, 42px); 
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(233, 189, 85, 0.12); 
+            padding: clamp(30px, 4.5vw, 48px); 
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(233, 189, 85, 0.15); 
             width: 100%; 
             color: #f8fafc;
         }
-        .card-title { display: flex; align-items: center; gap: 14px; font: 600 1.35rem 'Cinzel', serif; margin: 0 0 28px; color: #fef08a; }
-        .card-title .symbol { font-family: inherit; color: var(--gold); font-size: 1.5rem; }
+
+        /* Garis Dalam Bingkai Ganda (Inner Border) */
+        .luxury-card::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(233, 189, 85, 0.4);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        /* Ornamen Emas di Sudut Bingkai */
+        .luxury-card::after {
+            content: '❖';
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            color: #e9bd55;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(233, 189, 85, 0.8);
+            pointer-events: none;
+        }
+
+        .card-corner-left {
+            position: absolute;
+            top: 14px;
+            left: 18px;
+            color: #e9bd55;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(233, 189, 85, 0.8);
+            pointer-events: none;
+        }
+
+        .card-title { display: flex; align-items: center; gap: 14px; font: 700 1.4rem 'Cinzel', serif; margin: 0 0 28px; color: #fef08a; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .card-title .symbol { font-family: inherit; color: var(--gold); font-size: 1.6rem; }
         
-        .detail-line { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed rgba(233, 189, 85, 0.25); font-size: 0.95rem; line-height: 1.65; color: #e2e8f0; }
+        .detail-line { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px dashed rgba(233, 189, 85, 0.3); font-size: 0.95rem; line-height: 1.65; color: #e2e8f0; }
         .detail-line:last-child { border-bottom: 0; }
-        .detail-line .symbol { font-size: 1.2rem; color: var(--gold); min-width: 25px; }
+        .detail-line .symbol { font-size: 1.25rem; color: var(--gold); min-width: 25px; }
         .detail-line strong { display: block; color: #fef08a; margin-bottom: 4px; font-size: 1rem; }
         .map-help { font-size: 0.8rem; color: var(--muted); margin: 16px 0 20px; line-height: 1.6; }
-        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 15px 20px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(233, 189, 85, 0.3); transition: transform 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
-        .map-button:hover { transform: translateY(-2px); }
+        .map-button { width: 100%; background: linear-gradient(135deg, #e9bd55, #ca8a04); color: #0f172a; border: 0; border-radius: 999px; padding: 15px 20px; font-weight: 700; font-family: 'Cinzel', serif; box-shadow: 0 6px 20px rgba(233, 189, 85, 0.35); transition: transform 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
+        .map-button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(233, 189, 85, 0.5); }
         
-        .countdown-card { background: linear-gradient(145deg, #0f172a, #1e293b); text-align: center; }
+        .countdown-card { text-align: center; }
         .countdown-card .card-title { justify-content: center; }
         .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
-        .timebox { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); border-radius: 18px; text-align: center; padding: 20px 8px; }
-        .timebox strong { display: block; font-size: clamp(1.4rem, 3vw, 2.4rem); color: #fef08a; font-family: 'Cinzel', serif; }
+        .timebox { background: rgba(15, 23, 42, 0.8); border: 1.5px solid var(--gold-border); border-radius: 18px; text-align: center; padding: 20px 8px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.5); }
+        .timebox strong { display: block; font-size: clamp(1.4rem, 3vw, 2.4rem); color: #fef08a; font-family: 'Cinzel', serif; text-shadow: 0 2px 8px rgba(233, 189, 85, 0.4); }
         .timebox span { font-size: 0.75rem; color: #cbd5e1; }
         .countdown-note { text-align: center; color: #fef08a; font: italic 1.05rem 'Cinzel', serif; line-height: 1.6; margin: 28px 0 0; }
         
@@ -336,7 +341,7 @@
         .wish p { line-height: 1.7; font-size: 0.88rem; margin: 0; color: #cbd5e1; }
         .empty { grid-column: 1/-1; text-align: center; padding: 36px; border: 1px dashed var(--gold-border); border-radius: 20px; color: #94a3b8; background: rgba(15, 23, 42, 0.5); }
         
-        /* Gift Section - Real ATM Cards Styles */
+        /* Gift Section - ATM Cards Styles */
         .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 28px; margin-top: 32px; }
         
         .atm-card {
@@ -397,29 +402,33 @@
         @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
         
         @media(max-width: 600px) { 
-            .section { padding: 20px 14px; margin-bottom: 50px; } 
-            .cover { padding: 30px 16px; } 
-            .moon { width: 55px; height: 55px; right: 5%; top: 4%; } 
-            .planet { transform: scale(0.65); left: -4%; top: 6%; } 
+            .section { padding: 16px 12px; margin-bottom: 50px; } 
+            .luxury-card { padding: 26px 18px; border-radius: 22px; }
+            .cover { padding: 20px 12px; } 
+            .cover-card { border-radius: 22px; padding: 26px 18px; }
             .event-pill { font-size: 0.8rem; gap: 10px; padding: 10px 18px; } 
             .intro { padding-top: 52px; margin-bottom: 20px; } 
             .countdown { gap: 6px; } 
             .timebox { padding: 14px 2px; } 
             .timebox span { font-size: 0.65rem; } 
             .formrow { grid-template-columns: 1fr; gap: 16px; } 
-            .card, .rsvp-card { border-radius: 22px; padding: 24px 18px; } 
             .footer { padding: 60px 18px 45px; } 
         }
     </style>
 </head>
 <body class="cover-lock">
 
-    <!-- 1. Tampilan Awal Full Screen (Cover / Sampul) -->
+    <!-- 1. Tampilan Awal BINGKAI EMAS DENGAN HEART ANIMATION (Cover / Sampul) -->
     <section class="cover" id="cover">
-        <div class="moon"></div>
-        <div class="planet"></div>
+        <!-- Container Canvas Three.js Partikel Hati -->
+        <div id="heart-canvas-container"></div>
+
+        <!-- SVG Path untuk Bentuk Hati (Hidden) -->
+        <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+            <path id="heart-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
         
-        <div class="cover-content">
+        <div class="cover-card">
             <div class="crown">♔</div>
             <p class="eyebrow">UNDANGAN PENUH SYUKUR</p>
             <h1>Nareendra<br>AthaRazka Alfiqri</h1>
@@ -436,7 +445,7 @@
         </div>
     </section>
 
-    <!-- 2. Seluruh Konten Utama Undangan -->
+    <!-- 2. Seluruh Konten Utama Undangan DENGAN BINGKAI MEWAH PROFESIONAL -->
     <div class="page hidden" id="invitation">
         
         <!-- Latar Belakang Meteor Jatuh Emas -->
@@ -452,10 +461,11 @@
             </div>
         </section>
 
-        <!-- SEKSI 1: TABEL TENTANG SI KECIL (BERDIRI SENDIRI BERJARAK) -->
+        <!-- SEKSI 1: TABEL TENTANG SI KECIL (BINGKAI MEWAH) -->
         <section class="section">
             <div class="section-inner">
-                <article class="card">
+                <article class="luxury-card">
+                    <span class="card-corner-left">❖</span>
                     <h3 class="card-title"><span class="symbol">♔</span> Tentang Si Kecil</h3>
                     <div class="detail-line"><span class="symbol">♙</span><div><strong>Nama Anak</strong>Nareendra AthaRazka Alfiqri</div></div>
                     <div class="detail-line"><span class="symbol">✦</span><div><strong>Nama Panggilan</strong>Nareendra</div></div>
@@ -465,10 +475,11 @@
             </div>
         </section>
 
-        <!-- SEKSI 2: DETAIL ACARA (BERDIRI SENDIRI BERJARAK) -->
+        <!-- SEKSI 2: DETAIL ACARA (BINGKAI MEWAH) -->
         <section class="section" id="acara">
             <div class="section-inner">
-                <article class="card">
+                <article class="luxury-card">
+                    <span class="card-corner-left">❖</span>
                     <h3 class="card-title"><span class="symbol">✧</span> Detail Acara</h3>
                     <div class="detail-line"><span class="symbol">▦</span><div><strong>Hari & Tanggal</strong>Sabtu, 24 Oktober 2026</div></div>
                     <div class="detail-line"><span class="symbol">◷</span><div><strong>Waktu</strong>10.00 WIB</div></div>
@@ -479,10 +490,11 @@
             </div>
         </section>
 
-        <!-- SEKSI 3: HITUNG MUNDUR ACARA (BERDIRI SENDIRI BERJARAK) -->
+        <!-- SEKSI 3: HITUNG MUNDUR ACARA (BINGKAI MEWAH) -->
         <section class="section">
             <div class="section-inner">
-                <article class="card countdown-card">
+                <article class="luxury-card countdown-card">
+                    <span class="card-corner-left">❖</span>
                     <h3 class="card-title"><span class="symbol">⌛</span> Hitung Mundur Acara</h3>
                     <div class="countdown" aria-live="polite">
                         <div class="timebox"><strong id="days">--</strong><span>Hari</span></div>
@@ -495,11 +507,12 @@
             </div>
         </section>
 
-        <!-- SEKSI 4: UCAPAN UNDANGAN (BERDIRI SENDIRI BERJARAK) -->
+        <!-- SEKSI 4: UCAPAN UNDANGAN (BINGKAI MEWAH) -->
         <section class="section">
             <div class="section-inner">
-                <article class="card invitation-copy">
-                    <div class="decor" style="text-align: center; margin-bottom: 16px;">✧ ♧ ✧</div>
+                <article class="luxury-card invitation-copy">
+                    <span class="card-corner-left">❖</span>
+                    <div class="decor" style="text-align: center; margin-bottom: 16px; color: var(--gold); font-size: 2rem;">✧ ♧ ✧</div>
                     <h3 class="card-title" style="justify-content: center;">Ucapan Undangan</h3>
                     <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan turut mendoakan putra kami dalam acara tasyakuran Aqiqah ini.</p>
                     <p>Kehadiran serta doa yang diberikan menjadi hadiah yang sangat berarti bagi keluarga kami.</p>
@@ -509,10 +522,11 @@
             </div>
         </section>
 
-        <!-- SEKSI 5: KONFIRMASI KEHADIRAN / RSVP (BERDIRI SENDIRI BERJARAK) -->
+        <!-- SEKSI 5: KONFIRMASI KEHADIRAN / RSVP (BINGKAI MEWAH) -->
         <section class="section" id="rsvp">
             <div class="section-inner">
-                <section class="card rsvp-card">
+                <section class="luxury-card">
+                    <span class="card-corner-left">❖</span>
                     <h3 class="card-title"><span class="symbol">✉</span> Konfirmasi Kehadiran (RSVP)</h3>
                     <p class="muted" style="margin-top:-14px;margin-bottom:24px;line-height:1.6">Mohon isi konfirmasi berikut agar kami dapat mempersiapkan acara dengan baik.</p>
                     <form class="rsvp-form" id="rsvpForm">
@@ -568,7 +582,7 @@
             </div>
         </section>
 
-        <!-- SEKSI 7: HADIAH DIGITAL -->
+        <!-- SEKSI 7: HADIAH DIGITAL (KARTU ATM BRI & BSI) -->
         <section class="section" id="gift">
             <div class="section-inner">
                 <div style="text-align: center; margin-bottom: 28px;">
@@ -584,13 +598,13 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Bank BRI" class="bank-logo-img">
                         </div>
                         <div>
-                            <p class="card-number">5634 0101 1903 504</p>
+                            <p class="card-number">1234 0100 5678 502</p>
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px;">
                                 <div>
-                                    <div class="card-holder">An.</div>
-                                    <div class="card-name">NADIA NINGSIH</div>
+                                    <div class="card-holder">Pemilik Rekening</div>
+                                    <div class="card-name">Ahmadun Solehan Fiqri</div>
                                 </div>
-                                <div style="font-size: 0.75rem; font-family: monospace; color: #93c5fd;">Bank Rakyat Indonesia</div>
+                                <div style="font-size: 0.75rem; font-family: monospace; color: #93c5fd;">DEBIT / ATM</div>
                             </div>
                         </div>
                         <button class="map-button" style="margin-top: 12px; padding: 10px; font-size: 0.8rem;" onclick="copyAcc('123401005678502', 'Nomor Rekening BRI berhasil disalin!')" type="button">
@@ -609,11 +623,11 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Bank_Syariah_Indonesia.svg" alt="Bank BSI" class="bank-logo-img">
                         </div>
                         <div>
-                            <p class="card-number">7230 4685 29</p>
+                            <p class="card-number">7145 6789 01</p>
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px;">
                                 <div>
-                                    <div class="card-holder">An.</div>
-                                    <div class="card-name">NADIA NINGSIH</div>
+                                    <div class="card-holder">Pemilik Rekening</div>
+                                    <div class="card-name">Nadia Ningsih</div>
                                 </div>
                                 <div style="font-size: 0.75rem; font-family: monospace; color: #6ee7b7;">SYARIAH INDONESIA</div>
                             </div>
@@ -640,7 +654,6 @@
 
             <!-- Copyright Footer & Real 3D Social Icons -->
             <div style="margin-top: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; color: #cbd5e1;">
-                
                 <div style="font-size: 0.78rem; line-height: 1.6; max-width: 600px; padding: 0 16px;">
                     <p style="margin: 0 0 6px 0;">
                         Copyright © 2026 DickyStudious. 
@@ -651,9 +664,7 @@
                         The content of this site is licensed under a 
                         <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" style="color: #fef08a; text-decoration: underline;">Creative Commons Attribution 4.0 International License</a>.
                     </p>
-                    <p style="margin: 0;">
-                        DickyStudious® and associated identifiers are trademarks of DickyStudious.
-                    </p>
+                    <p style="margin: 0;">DickyStudious® and associated identifiers are trademarks of DickyStudious.</p>
                 </div>
 
                 <div style="display: flex; gap: 16px; align-items: center; justify-content: center; margin-top: 8px;">
@@ -680,12 +691,79 @@
     </button>
 
     <script>
-        // Generate Dynamic Golden Meteor Falling Stars
+        // --- THREE.JS PARTIKEL HATI DI COVER ---
+        const container = document.getElementById('heart-canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 350;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        const path = document.querySelector("#heart-path");
+        const length = path.getTotalLength();
+        const vertices = [];
+        const tl = gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0.5 });
+
+        for (let i = 0; i < length; i += 0.8) {
+            const point = path.getPointAtLength(i);
+            const vector = new THREE.Vector3((point.x - 12) * 12, (-point.y + 12) * 12, 0);
+
+            vector.x += (Math.random() - 0.5) * 25;
+            vector.y += (Math.random() - 0.5) * 25;
+            vector.z += (Math.random() - 0.5) * 60;
+
+            vertices.push(vector);
+
+            tl.from(vector, {
+                x: 0,
+                y: 0,
+                z: 0,
+                ease: "power2.inOut",
+                duration: 3
+            }, i * 0.0015);
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(vertices.length * 3);
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const material = new THREE.PointsMaterial({
+            color: 0xf3d068,
+            size: 3.5,
+            transparent: true,
+            opacity: 0.9,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particleSystem = new THREE.Points(geometry, material);
+        scene.add(particleSystem);
+
+        function animateHeart() {
+            requestAnimationFrame(animateHeart);
+            const posAttr = geometry.attributes.position;
+            for (let i = 0; i < vertices.length; i++) {
+                posAttr.setXYZ(i, vertices[i].x, vertices[i].y, vertices[i].z);
+            }
+            posAttr.needsUpdate = true;
+            particleSystem.rotation.y += 0.003;
+            renderer.render(scene, camera);
+        }
+        animateHeart();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- BACKGROUND METEOR JATUH DI HALAMAN UTAMA ---
         const skyBg = document.getElementById('skyBg');
         for (let i = 0; i < 28; i++) {
             const meteor = document.createElement('div');
             meteor.className = 'meteor-container';
-            
             const topPos = Math.random() * 90;
             const leftPos = Math.random() * 100 + 10;
             const animDuration = Math.random() * 3 + 2.5;
@@ -695,12 +773,11 @@
             meteor.style.left = `${leftPos}%`;
             meteor.style.animationDuration = `${animDuration}s`;
             meteor.style.animationDelay = `${animDelay}s`;
-            
             meteor.innerHTML = `<div class="meteor-head"></div>`;
             skyBg.appendChild(meteor);
         }
 
-        const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/d7xaPto7SARw7JCV8?g_st=ic';
+        const GOOGLE_MAPS_URL = '';
         const BACKGROUND_MUSIC_URL = 'https://files.catbox.moe/nso3ry.mp4';
         const EVENT_DATE = new Date('2026-10-24T10:00:00+07:00');
         const POLL_INTERVAL_MS = 5000;
@@ -907,11 +984,7 @@
             }
         });
 
-        const observerOptions = {
-            root: null,
-            threshold: 0.1
-        };
-
+        const observerOptions = { root: null, threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
