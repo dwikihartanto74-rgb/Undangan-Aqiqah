@@ -50,11 +50,11 @@
         button { cursor: pointer; }
         .hidden { display: none !important; }
 
-        /* COVER DEPAN TANPA BINGKAI */
+        /* COVER DEPAN TANPA BINGKAI DENGAN BULAN DAN PLANET */
         .cover {
             position: fixed;
             inset: 0;
-            width: 100vw;
+            width: 100.0vw;
             height: 100vh;
             height: 100dvh;
             z-index: 9999;
@@ -72,6 +72,41 @@
             opacity: 0;
             transform: scale(1.04);
             pointer-events: none;
+        }
+
+        /* Elemen Bulan dan Planet di Cover */
+        .cover-moon {
+            position: absolute;
+            top: 50px;
+            right: 60px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fef08a, #e9bd55);
+            box-shadow: 0 0 35px rgba(254, 240, 138, 0.4);
+            z-index: 1;
+        }
+        .cover-planet {
+            position: absolute;
+            bottom: 80px;
+            left: 60px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #60a5fa, #1d4ed8);
+            box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+            z-index: 1;
+        }
+        .cover-planet::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 20px;
+            border: 2px solid rgba(254, 240, 138, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
         }
 
         .cover-content {
@@ -377,22 +412,23 @@
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- KODE CSS KUPU-KUPU (BUTTERFLY) --- */
+        /* --- KODE CSS KUPU-KUPU (UKURAN KECIL, DI LATAR BELAKANG) --- */
         #butterfly-container {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: 999;
+            z-index: 2;
             overflow: hidden;
             display: none;
         }
 
         .mariposa {
-            width: 4rem;
-            height: 6.5rem;
+            width: 2.2rem;
+            height: 3.5rem;
             position: absolute;
             transform-style: preserve-3d;
             will-change: transform, left, top;
+            opacity: 0.65;
         }
 
         .mariposa__body {
@@ -400,8 +436,8 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            width: 4rem;
-            height: 6.5rem;
+            width: 2.2rem;
+            height: 3.5rem;
             z-index: 2;
             transform-style: preserve-3d;
         }
@@ -442,15 +478,15 @@
             background-image: url("https://assets.codepen.io/2273448/blue-butterfly-wing.png");
         }
 
-        /* Warna Pink (Menggunakan filter hue-rotate agar menjadi pink) */
+        /* Warna Pink Asli */
         .mariposa.pink .mariposa__body {
             background-image: url("https://assets.codepen.io/2273448/blue-butterfly-body.png");
-            filter: hue-rotate(240deg) saturate(200%);
+            filter: hue-rotate(305deg) saturate(220%) brightness(1.1);
         }
         .mariposa.pink .mariposa__wings::before,
         .mariposa.pink .mariposa__wings::after {
             background-image: url("https://assets.codepen.io/2273448/blue-butterfly-wing.png");
-            filter: hue-rotate(240deg) saturate(200%);
+            filter: hue-rotate(305deg) saturate(220%) brightness(1.1);
         }
 
         @keyframes flutter-l {
@@ -462,6 +498,7 @@
             0%, 100% { transform: rotateY(0deg) scaleX(-100%); }
             50% { transform: rotateY(50deg) scaleX(-100%); }
         }
+
         @media(max-width: 600px) { 
             .section { padding: 16px 12px; margin-bottom: 50px; } 
             .luxury-card { padding: 26px 18px; border-radius: 22px; }
@@ -478,22 +515,23 @@
 </head>
 <body class="cover-lock">
 
-    <!-- Container Kupu-kupu (Terbang di Seluruh Layar setelah Dibuka) -->
+    <!-- Container Kupu-kupu di Latar Belakang -->
     <div id="butterfly-container">
-        <!-- Kupu-kupu Biru -->
         <div class="mariposa blue" id="butterfly-blue">
             <div class="mariposa__body"></div>
             <div class="mariposa__wings"></div>
         </div>
-        <!-- Kupu-kupu Pink -->
         <div class="mariposa pink" id="butterfly-pink">
             <div class="mariposa__body"></div>
             <div class="mariposa__wings"></div>
         </div>
     </div>
 
-    <!-- 1. Tampilan Awal Full Screen Tanpa Bingkai -->
+    <!-- 1. Tampilan Awal Full Screen Tanpa Bingkai dengan Bulan & Planet -->
     <section class="cover" id="cover">
+        <div class="cover-moon"></div>
+        <div class="cover-planet"></div>
+
         <div class="cover-content">
             <div class="crown">♔</div>
             <p class="eyebrow">UNDANGAN PENUH SYUKUR</p>
@@ -757,7 +795,7 @@
     </button>
 
     <script>
-        // --- SCRIPT PERGERAKAN KUPU-KUPU TERBANG MELINGKAR DI SELURUH LAYAR ---
+        // --- SCRIPT PERGERAKAN KUPU-KUPU DI LATAR BELAKANG ---
         function initButterflies() {
             const container = document.getElementById('butterfly-container');
             container.style.display = 'block';
@@ -766,26 +804,26 @@
                 {
                     el: document.getElementById('butterfly-blue'),
                     x: window.innerWidth * 0.2,
-                    y: window.innerHeight + 100,
+                    y: window.innerHeight + 50,
                     angle: Math.random() * Math.PI * 2,
                     speed: 2.2,
-                    radiusX: window.innerWidth * 0.35,
-                    radiusY: window.innerHeight * 0.3,
-                    centerX: window.innerWidth * 0.5,
-                    centerY: window.innerHeight * 0.5,
-                    rotSpeed: 0.015
-                },
-                {
-                    el: document.getElementById('butterfly-pink'),
-                    x: window.innerWidth * 0.8,
-                    y: window.innerHeight + 100,
-                    angle: Math.random() * Math.PI * 2,
-                    speed: 1.8,
                     radiusX: window.innerWidth * 0.4,
                     radiusY: window.innerHeight * 0.35,
                     centerX: window.innerWidth * 0.5,
                     centerY: window.innerHeight * 0.5,
-                    rotSpeed: -0.012
+                    rotSpeed: 0.012
+                },
+                {
+                    el: document.getElementById('butterfly-pink'),
+                    x: window.innerWidth * 0.8,
+                    y: window.innerHeight + 50,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: 1.8,
+                    radiusX: window.innerWidth * 0.45,
+                    radiusY: window.innerHeight * 0.4,
+                    centerX: window.innerWidth * 0.5,
+                    centerY: window.innerHeight * 0.5,
+                    rotSpeed: -0.01
                 }
             ];
 
@@ -793,15 +831,12 @@
                 butterflies.forEach(b => {
                     b.angle += b.rotSpeed;
                     
-                    // Pola terbang melingkar menyebar ke seluruh layar
                     targetX = b.centerX + Math.cos(b.angle) * b.radiusX;
                     targetY = b.centerY + Math.sin(b.angle * 1.5) * b.radiusY;
 
-                    // Pergerakan halus menuju titik jalur
-                    b.x += (targetX - b.x) * 0.05;
-                    b.y += (targetY - b.y) * 0.05;
+                    b.x += (targetX - b.x) * 0.04;
+                    b.y += (targetY - b.y) * 0.04;
 
-                    // Hitung sudut hadap kupu-kupu berdasarkan arah terbang
                     const dx = targetX - b.x;
                     const dy = targetY - b.y;
                     const rot = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
@@ -885,7 +920,7 @@
                 });
             }
 
-            // Aktifkan animasi kupu-kupu terbang dari bawah ke seluruh layar tanpa henti
+            // Aktifkan animasi kupu-kupu di latar belakang
             initButterflies();
 
             const cover = $('#cover');
