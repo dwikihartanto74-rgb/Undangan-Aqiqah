@@ -7,21 +7,15 @@
     <meta name="description" content="Undangan Aqiqah Nareendra AthaRazka Alfiqri">
     <title>Undangan Aqiqah — Nareendra AthaRazka Alfiqri</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Three.js & GSAP CDN untuk Animasi Partikel Hati -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
         :root {
-            --navy: #0b2454;
-            --blue: #2461a9;
-            --sky: #dceeff;
+            --animation-duration: 1.8s;
+            --easing: cubic-bezier(0.37, 0, 0.63, 1);
             --gold: #f3d068;
             --gold-border: #e9bd55;
-            --cream: #fffdf8;
             --ink: #f1f5f9;
             --muted: #94a3b8;
-            --line: #334155;
         }
         * { box-sizing: border-box; }
         html {
@@ -56,7 +50,7 @@
         button { cursor: pointer; }
         .hidden { display: none !important; }
 
-        /* COVER DEPAN TANPA BINGKAI DENGAN HEART ANIMATION PINK DI TENGAH */
+        /* COVER DEPAN TANPA BINGKAI */
         .cover {
             position: fixed;
             inset: 0;
@@ -77,14 +71,6 @@
         .cover.cover-exit {
             opacity: 0;
             transform: scale(1.04);
-            pointer-events: none;
-        }
-
-        /* Container Canvas Three.js Partikel Hati di Cover */
-        #heart-canvas-container {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
             pointer-events: none;
         }
 
@@ -230,7 +216,6 @@
             z-index: 3;
         }
         
-        /* PENGATURAN SEKSI DENGAN BINGKAI MEWAH PROFESIONAL */
         .section { 
             padding: 20px clamp(16px, 4vw, 36px); 
             max-width: 860px; 
@@ -249,7 +234,7 @@
         .section h2 { font: 600 clamp(2rem, 4.6vw, 3.5rem)/1.12 'Cinzel', serif; margin: 14px 0 20px; color: #fef08a; }
         .lead { max-width: 720px; line-height: 1.85; color: #cbd5e1; margin: 0 auto; font-size: 1rem; }
         
-        /* DESAIN BINGKAI GANDA EMAS 3D MEWAH KHUSUS HALAMAN UTAMA */
+        /* BINGKAI MEWAH HALAMAN UTAMA */
         .luxury-card {
             position: relative;
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.92)); 
@@ -260,8 +245,6 @@
             width: 100%; 
             color: #f8fafc;
         }
-
-        /* Garis Dalam Bingkai Ganda (Inner Border) */
         .luxury-card::before {
             content: '';
             position: absolute;
@@ -270,8 +253,6 @@
             border-radius: 20px;
             pointer-events: none;
         }
-
-        /* Ornamen Emas di Sudut Bingkai */
         .luxury-card::after {
             content: '❖';
             position: absolute;
@@ -282,7 +263,6 @@
             text-shadow: 0 0 10px rgba(233, 189, 85, 0.8);
             pointer-events: none;
         }
-
         .card-corner-left {
             position: absolute;
             top: 14px;
@@ -396,7 +376,92 @@
         .loader { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.5); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; }
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-        
+
+        /* --- KODE CSS KUPU-KUPU (BUTTERFLY) --- */
+        #butterfly-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+            display: none;
+        }
+
+        .mariposa {
+            width: 4rem;
+            height: 6.5rem;
+            position: absolute;
+            transform-style: preserve-3d;
+            will-change: transform, left, top;
+        }
+
+        .mariposa__body {
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            width: 4rem;
+            height: 6.5rem;
+            z-index: 2;
+            transform-style: preserve-3d;
+        }
+
+        .mariposa__wings::before,
+        .mariposa__wings::after {
+            position: absolute;
+            margin: auto;
+            top: -20%;
+            content: "";
+            height: 200%;
+            width: 150%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transform-style: preserve-3d;
+            z-index: 3;
+        }
+
+        .mariposa__wings::before {
+            right: 55%;
+            animation: flutter-l var(--animation-duration) infinite var(--easing);
+            transform-origin: 100% 50%;
+        }
+
+        .mariposa__wings::after {
+            right: 45%;
+            animation: flutter-r var(--animation-duration) infinite var(--easing);
+            transform-origin: 100% 50%;
+        }
+
+        /* Warna Biru */
+        .mariposa.blue .mariposa__body {
+            background-image: url("https://assets.codepen.io/2273448/blue-butterfly-body.png");
+        }
+        .mariposa.blue .mariposa__wings::before,
+        .mariposa.blue .mariposa__wings::after {
+            background-image: url("https://assets.codepen.io/2273448/blue-butterfly-wing.png");
+        }
+
+        /* Warna Pink (Menggunakan filter hue-rotate agar menjadi pink) */
+        .mariposa.pink .mariposa__body {
+            background-image: url("https://assets.codepen.io/2273448/blue-butterfly-body.png");
+            filter: hue-rotate(240deg) saturate(200%);
+        }
+        .mariposa.pink .mariposa__wings::before,
+        .mariposa.pink .mariposa__wings::after {
+            background-image: url("https://assets.codepen.io/2273448/blue-butterfly-wing.png");
+            filter: hue-rotate(240deg) saturate(200%);
+        }
+
+        @keyframes flutter-l {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(-50deg); }
+        }
+
+        @keyframes flutter-r {
+            0%, 100% { transform: rotateY(0deg) scaleX(-100%); }
+            50% { transform: rotateY(50deg) scaleX(-100%); }
+        }
         @media(max-width: 600px) { 
             .section { padding: 16px 12px; margin-bottom: 50px; } 
             .luxury-card { padding: 26px 18px; border-radius: 22px; }
@@ -413,16 +478,22 @@
 </head>
 <body class="cover-lock">
 
-    <!-- 1. Tampilan Awal Full Screen Tanpa Bingkai dengan Animasi Hati Pink di Tengah -->
-    <section class="cover" id="cover">
-        <!-- Container Canvas Three.js Partikel Hati -->
-        <div id="heart-canvas-container"></div>
+    <!-- Container Kupu-kupu (Terbang di Seluruh Layar setelah Dibuka) -->
+    <div id="butterfly-container">
+        <!-- Kupu-kupu Biru -->
+        <div class="mariposa blue" id="butterfly-blue">
+            <div class="mariposa__body"></div>
+            <div class="mariposa__wings"></div>
+        </div>
+        <!-- Kupu-kupu Pink -->
+        <div class="mariposa pink" id="butterfly-pink">
+            <div class="mariposa__body"></div>
+            <div class="mariposa__wings"></div>
+        </div>
+    </div>
 
-        <!-- SVG Path untuk Bentuk Hati (Hidden) -->
-        <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
-            <path id="heart-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-        </svg>
-        
+    <!-- 1. Tampilan Awal Full Screen Tanpa Bingkai -->
+    <section class="cover" id="cover">
         <div class="cover-content">
             <div class="crown">♔</div>
             <p class="eyebrow">UNDANGAN PENUH SYUKUR</p>
@@ -686,75 +757,61 @@
     </button>
 
     <script>
-        // --- THREE.JS PARTIKEL HATI WARNA PINK DI TENGAH COVER ---
-        const container = document.getElementById('heart-canvas-container');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 350;
+        // --- SCRIPT PERGERAKAN KUPU-KUPU TERBANG MELINGKAR DI SELURUH LAYAR ---
+        function initButterflies() {
+            const container = document.getElementById('butterfly-container');
+            container.style.display = 'block';
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
+            const butterflies = [
+                {
+                    el: document.getElementById('butterfly-blue'),
+                    x: window.innerWidth * 0.2,
+                    y: window.innerHeight + 100,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: 2.2,
+                    radiusX: window.innerWidth * 0.35,
+                    radiusY: window.innerHeight * 0.3,
+                    centerX: window.innerWidth * 0.5,
+                    centerY: window.innerHeight * 0.5,
+                    rotSpeed: 0.015
+                },
+                {
+                    el: document.getElementById('butterfly-pink'),
+                    x: window.innerWidth * 0.8,
+                    y: window.innerHeight + 100,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: 1.8,
+                    radiusX: window.innerWidth * 0.4,
+                    radiusY: window.innerHeight * 0.35,
+                    centerX: window.innerWidth * 0.5,
+                    centerY: window.innerHeight * 0.5,
+                    rotSpeed: -0.012
+                }
+            ];
 
-        const path = document.querySelector("#heart-path");
-        const length = path.getTotalLength();
-        const vertices = [];
-        const tl = gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0.5 });
+            function animateButterflies() {
+                butterflies.forEach(b => {
+                    b.angle += b.rotSpeed;
+                    
+                    // Pola terbang melingkar menyebar ke seluruh layar
+                    targetX = b.centerX + Math.cos(b.angle) * b.radiusX;
+                    targetY = b.centerY + Math.sin(b.angle * 1.5) * b.radiusY;
 
-        for (let i = 0; i < length; i += 0.1) {
-            const point = path.getPointAtLength(i);
-            const vector = new THREE.Vector3(point.x, -point.y, 0);
+                    // Pergerakan halus menuju titik jalur
+                    b.x += (targetX - b.x) * 0.05;
+                    b.y += (targetY - b.y) * 0.05;
 
-            vector.x += (Math.random() - 0.5) * 30;
-            vector.y += (Math.random() - 0.5) * 30;
-            vector.z += (Math.random() - 0.5) * 70;
+                    // Hitung sudut hadap kupu-kupu berdasarkan arah terbang
+                    const dx = targetX - b.x;
+                    const dy = targetY - b.y;
+                    const rot = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
 
-            vertices.push(vector);
-
-            tl.from(vector, {
-                x: 600 / 2,
-                y: -552 / 2,
-                z: 0,
-                ease: "power2.inOut",
-                duration: "random(2, 5)"
-            },
-            i * 0.002
-            );
-        }
-
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(vertices.length * 3);
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const material = new THREE.PointsMaterial({
-            color: 0xff69b4, // Warna pink terang sesuai permintaan
-            size: 2.8,
-            transparent: true,
-            opacity: 0.9,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particleSystem = new THREE.Points(geometry, material);
-        scene.add(particleSystem);
-
-        function animateHeart() {
-            requestAnimationFrame(animateHeart);
-            const posAttr = geometry.attributes.position;
-            for (let i = 0; i < vertices.length; i++) {
-                posAttr.setXYZ(i, vertices[i].x, vertices[i].y, vertices[i].z);
+                    b.el.style.transform = `translate3d(${b.x}px, ${b.y}px, 0) rotate(${rot}deg)`;
+                });
+                requestAnimationFrame(animateButterflies);
             }
-            posAttr.needsUpdate = true;
-            particleSystem.rotation.y += 0.002;
-            renderer.render(scene, camera);
+            animateButterflies();
         }
-        animateHeart();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
 
         // --- BACKGROUND METEOR JATUH DI HALAMAN UTAMA ---
         const skyBg = document.getElementById('skyBg');
@@ -827,6 +884,9 @@
                     setMusicUI(false);
                 });
             }
+
+            // Aktifkan animasi kupu-kupu terbang dari bawah ke seluruh layar tanpa henti
+            initButterflies();
 
             const cover = $('#cover');
             cover.classList.add('cover-exit');
