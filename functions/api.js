@@ -1,6 +1,7 @@
 /**
  * Cloudflare Pages Function: /api
- * Tambahkan environment variable GAS_WEB_APP_URL = https://script.google.com/macros/s/AKfycbyTmrTjppViKt9fvY39QqIIg4f57B-GfpFVUaybI2DWgV5zDh88LrHLoQ2BKKFYyNwiZw/exec
+ * Tambahkan environment variable const gasUrl = 'https://script.google.com/macros/s/AKfycbyF9byjELwhetzlhR28Mj3k5y0JE_dcqRVfx_bW8jTjyWEFdoVe2asGYaqDiiFv4799Jw/exec';
+
  */
 const ALLOWED_ACTIONS = new Set(['getInvitationData', 'getGuestMessages', 'submitRSVP']);
 
